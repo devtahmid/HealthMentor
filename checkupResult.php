@@ -1,25 +1,3 @@
-<?php
-require("project_connection.php");
-try {
-  $sql = "SELECT * FROM symptoms";
-  $result = $db->query($sql);
-  $rows = $result->fetchAll();
-  $db = null;
-  $rowCleaned = [];
-  foreach ($rows as $row) {
-    $toPush = [];
-    $toPush['symptom_id'] = $row['symptom_id'];
-    $toPush['symptom'] = $row['symptom'];
-    array_push($rowCleaned, $toPush);
-  }
-  $json_rows = json_encode($rowCleaned, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-} catch (PDOException $e) {
-  echo $e->getMessage();
-  die();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +5,7 @@ try {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Disorder</title>
+  <title>Self Check-up Result</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
