@@ -10,19 +10,31 @@ $addedSymptomsList = json_decode($addedSymptomsList, true);
 require("project_connection.php");
 try {
 
-  $sql = "SELECT `disease_id` FROM disease_symptoms WHERE symptom_id = :symptom_id";
-  $preparestatement = $db->prepare($sql);
+  $sql = "SELECT * FROM disease_symptoms WHERE symptom_id = :symptom_id";
+  $preparestatement1 = $db->prepare($sql);
+
+  $sql2 = "SELECT * FROM diseases WHERE disease_id = :disease_id";
 
   $symptomsAndTheirDiseases = [];
   $index = 0;
+  $diseaseNames = [];
   foreach ($addedSymptomsList as $symp) {
-    $preparestatement->bindParam(':symptom_id', $symp['symptom_id']);
-    $preparestatement->execute();
-    $rows = $preparestatement->fetchAll();
+    $preparestatement1->bindParam(':symptom_id', $symp['symptom_id']);
+    $preparestatement1->execute();
+    $rows = $preparestatement1->fetchAll();
     //making the array on the bottom left of the srawing
     foreach ($rows as $row) {
       $symptomsAndTheirDiseases[$index][] = $row['disease_id'];
-      echo $index . "-" . $row['disease_id'] . "<br>";
+
+      $preparestatement2 = $db->prepare($sql2);
+      $preparestatement2->bindParam(':disease_id', $row['disease_id']);
+      $preparestatement2->execute();
+      $rows2 = $preparestatement2->fetch();
+      //print_r($rows2);
+      //echo "next<br>";
+      $diseaseNames[$row['disease_id']] = $rows2['disease'];
+      //echo $rows2['disease'];
+      //echo $index . "-" . $row['disease_id'] . "<br>";
     }
 
     ++$index;
@@ -31,13 +43,13 @@ try {
 
   echo $e->getMessage();
 }
-echo "<br>-----------line32----------<br>";
+//echo "<br>-----------line32----------<br>";
 //var_dump($symptomsAndTheirDiseases);
-echo "<br>---------line34--------<br>";
+//echo "<br>---------line34--------<br>";
 
 //making the array on the bottom right of the drawing
 
-$disordersAndTheirCount = [];
+$disordersAndTheirCount = []; //the index is the disease_id
 $totalCount = 0;
 
 foreach ($symptomsAndTheirDiseases as $symptom) {
@@ -49,8 +61,24 @@ foreach ($symptomsAndTheirDiseases as $symptom) {
     ++$totalCount;
   }
 }
+//get the total number of symptoms for each disease
+$sql3 = "SELECT COUNT(*) AS count FROM disease_symptoms WHERE disease_id = :disease_id";
+$preparedtatement3 = $db->prepare($sql3);
 
-/* echo "<br<-----------line51----------<br>";
+$highestPercentage = 0;
+foreach ($disordersAndTheirCount as $key => $value) {
+  $preparedtatement3->bindParam(':disease_id', $key);
+  $preparedtatement3->execute();
+  $rows3 = $preparedtatement3->fetch();
+  $disordersAndTheirCount[$key] = array();
+  $disordersAndTheirCount[$key]['totalSymptoms'] = $rows3['count'];
+  $disordersAndTheirCount[$key]['percentage'] = round((($value / $rows3['count']) * 100), 2);
+  if ($disordersAndTheirCount[$key]['percentage'] > $highestPercentage)
+    $highestPercentage = $disordersAndTheirCount[$key]['percentage'];
+}
+
+/*
+echo "<br<-----------line51----------<br>";
 var_dump($disordersAndTheirCount);
 echo "<br>---------line53--------<br>";
 echo $totalCount; */
@@ -59,3 +87,4 @@ echo $totalCount; */
 
 //display result
 
+require_once('checkupResult.php');
