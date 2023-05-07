@@ -89,11 +89,22 @@
         <?php
           }
         }
-        ?>
+        $treatCenterIds = [];
+        $hiddenDataSql = "SELECT DISTINCT treat_center_id FROM disease__treatmentcenter WHERE disease_id IN (0";
+        foreach ($disordersAndTheirCount as $key => $value) {
+          if ($disordersAndTheirCount[$key]['percentage']  == $highestPercentage)
+            $hiddenDataSql = $hiddenDataSql . ","  . $key;
+        }
+        $hiddenDataSql = $hiddenDataSql . ")";
+        $result = $db->query($hiddenDataSql);
+        while ($row = $result->fetch()) {
+          array_push($treatCenterIds, $row['treat_center_id']);
+        }
 
+        ?>
         <div>
           <form action='findTreatment.php'>
-            <input type='hidden' name="treatmentIds" value='<?php echo json_encode($treatmentIds); ?>'>
+            <input type='hidden' name="treatmentIds" value='<?php echo json_encode($treatCenterIds); ?>'>
 
             <button type="submit" class="btn btn-primary mx-auto" style="display:block; width:140px;">Find Treatment</button>
           </form>

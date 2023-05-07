@@ -25,7 +25,7 @@
         </g>
       </svg>
     </div>
-    <h2 class="container d-flex justify-content-center align-items-center" style="text-transform: none;">Disorder Successfully added!
+    <h2 class="container d-flex justify-content-center align-items-center" style="text-transform: none;"><?php echo $_GET['msg']; ?>
     </h2>
   </div>
 </body>

@@ -85,4 +85,4 @@ try {
   echo "line84" . $e->getMessage();
 }
 
-header('Location: additionSuccess.php');
+header('Location: additionSuccess.php?msg=Disorder successfully added! ');
