@@ -1,6 +1,6 @@
 //this page is used to validate the inputs in login and sign up page
 
-var nameFlag = emailFlag = passwordFlag = cnfmpasswordFlag = streetFlag = longitudeFlag = latitudeFlag = rateFlag = false;
+var nameFlag = emailFlag = passwordFlag = cnfmpasswordFlag = false;
 function checkFN(name) { //check full name
   var nameExp = /^([a-z]+\s)*[a-z]+$/i;
   if (name.length == 0) {
@@ -23,7 +23,7 @@ function checkFN(name) { //check full name
 
 function checkPWD(pwd, id) { //check password
 
-  var pwdExp = /^[0-9A-Za-z]{6,16}$/;
+  var pwdExp = /^[0-9A-Za-z]{5,16}$/;
   if (pwd.length == 0) {
     msg = "";
     passwordFlag = false;
@@ -100,94 +100,16 @@ function checkMAIL(mail, typeOfForm) { //check mail format
   document.getElementById(typeOfForm).innerHTML = msg;
 }
 
-function checkStreet(street) { //check streetAddress
-  if (street.length <= 2) {
-    msg = "Street Address minimum 3 characters";
-    color = "red";
-    streetFlag = false;
-  }
-  else {
-    msg = "Valid";
-    color = "green";
-    streetFlag = true;
-  }
-  document.getElementById('street_msg').style.color = color;
-  document.getElementById('street_msg').innerHTML = msg;
-}
-
-function checkLatitude(latitude) { //check latitude
-  var latitudeExp = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/;
-  if (latitude.length == 0) {
-    msg = "";
-    latitudeFlag = false;
-  }
-  else if (!latitudeExp.test(latitude)) {
-    msg = "Invalid latitude";
-    color = "red";
-    latitudeFlag = false;
-  }
-  else {
-    msg = "Valid latitude";
-    color = "green";
-    latitudeFlag = true;
-  }
-  document.getElementById('latitude_msg').style.color = color;
-  document.getElementById('latitude_msg').innerHTML = msg;
-}
-
-function checkLongitude(longitude) { //check longitude
-  var longitudeExp = /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/;
-  if (longitude.length == 0) {
-    msg = "";
-    longitudeFlag = false;
-  }
-  else if (!longitudeExp.test(longitude)) {
-    msg = "Invalid lngitude";
-    color = "red";
-    longitudeFlag = false;
-  }
-  else {
-    msg = "Valid longitude";
-    color = "green";
-    longitudeFlag = true;
-  }
-  document.getElementById('longitude_msg').style.color = color;
-  document.getElementById('longitude_msg').innerHTML = msg;
-}
-
-function checkRate(rate) { //check rate
-  var rateExp = /^\d{1,3}(\.\d{1,3})?$/;
-  if (rate.length == 0) {
-    msg = "";
-    color = "red"; //need default color for input type=number because when letters are entered, string length =0 and error: color not defined , at end of function
-    rateFlag = false;
-  }
-  else if (!rateExp.test(rate)) {
-    msg = "Invalid rate";
-    color = "red";
-    rateFlag = false;
-  }
-  else {
-    msg = "Valid rate";
-    color = "green";
-    rateFlag = true;
-  }
-  document.getElementById('rate_msg').style.color = color;
-  document.getElementById('rate_msg').innerHTML = msg;
-}
-
-
-
 function checkRegistrationInputs() {
   document.forms[1].JSEnabled.value = "TRUE";
-  if (document.getElementById('userTypeOwner').checked)
-    return (nameFlag = emailFlag = passwordFlag = cnfmpasswordFlag = streetFlag = longitudeFlag = latitudeFlag = rateFlag);
-  else
-    return (nameFlag = emailFlag = passwordFlag = cnfmpasswordFlag);
+  console.log(nameFlag, emailFlag, passwordFlag, cnfmpasswordFlag)
+  return (nameFlag && emailFlag && passwordFlag && cnfmpasswordFlag);
 
 }
 
 function checkLoginInputs() {
   document.forms[0].JSEnabled.value = "TRUE";
+  console.log("checklogininputs");
+  console.log(emailFlag, passwordFlag);
   return (emailFlag && passwordFlag);
 }

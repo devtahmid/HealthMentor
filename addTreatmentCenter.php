@@ -1,7 +1,7 @@
 <?php
 require("project_connection.php");
 try {
-  $sql = "SELECT * FROM diseases";
+  $sql = "SELECT * FROM diseases where status = 'active'";
   $result = $db->query($sql);
   $rows = $result->fetchAll();
   $db = null;
@@ -18,6 +18,8 @@ try {
   die();
 }
 
+
+require("navbar_admin.php");
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +31,17 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Treatment Center</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
 
 <body>
+<br><br>
+  <div class="mx-auto" style="width:150px; height:150px;">
+  <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
+    </lord-icon>
+  </div>
 
-  <div class="container-md" style="margin-top: 70px;">
+  <div class="container-md" style="margin-top: 30px;">
     <h2 class="my-3 text-center">Add Treatment Center</h2>
 
 

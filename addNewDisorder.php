@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_GET['disorderName']))
-  header('Loaction: new_disorder_form.php');
+  header('Location: new_disorder_form.php');
 
 extract($_GET);
 $addedSymptomsList = json_decode($addedSymptomsList, true);

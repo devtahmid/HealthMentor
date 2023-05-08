@@ -84,7 +84,21 @@ echo "<br>---------line53--------<br>";
 echo $totalCount; */
 
 //if user logged in, take his userid and add to history
-
+session_start();
+if (isset($_SESSION['userId'])) {
+  try {
+    $sqlSaveResult = "INSERT INTO checkup_history (user_id, date, result_in_json) VALUES (:user_id, DATE_FORMAT(CURDATE(), '%Y-%m-%d'), :result_in_json)";
+    $stmt = $db->prepare($sqlSaveResult);
+    $stmt->bindParam(':user_id', $_SESSION['userId']);
+    $jsonencodeddata = json_encode($disordersAndTheirCount);
+    $stmt->bindParam(':result_in_json', $jsonencodeddata);
+    $stmt->execute();
+    //echo $db->lastInsertId();
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+  }
+}
+//echo "----".$_SESSION['userId']."-----";
+//echo json_encode($disordersAndTheirCount);
 //display result
-
 require_once('checkupResult.php');

@@ -18,6 +18,7 @@ try {
   die();
 }
 
+require("navbar_member.php");
 ?>
 
 
@@ -30,8 +31,8 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Self Check-up</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
-
+ <!--  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script> -->
+  <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   <style>
     @media (max-width: 767px) {
       .customDiv1 {
@@ -62,8 +63,12 @@ try {
 </head>
 
 <body>
-
-  <div class="container-lg" style="margin-top: 70px;">
+<br><br><br>
+  <div class="mx-auto" style="width:150px; height:150px;">
+  <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
+    </lord-icon>
+  </div>
+  <div class="container-lg" style="margin-top: 30px;">
     <h2 class="my-3 text-center">Self Checkup Service:</h2>
 
     <div class="row"><!-- includes selected symptoms -->

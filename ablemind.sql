@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 06, 2023 at 09:08 PM
+-- Generation Time: May 08, 2023 at 04:04 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,25 +24,48 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `checkup_history`
+--
+
+CREATE TABLE `checkup_history` (
+  `check_hist_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date` varchar(15) NOT NULL,
+  `result_in_json` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `checkup_history`
+--
+
+INSERT INTO `checkup_history` (`check_hist_id`, `user_id`, `date`, `result_in_json`) VALUES
+(8, 2, '2023-05-07', '{\"1\":{\"totalSymptoms\":6,\"percentage\":50},\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":40},\"6\":{\"totalSymptoms\":6,\"percentage\":50},\"10\":{\"totalSymptoms\":3,\"percentage\":33.3299999999999982946974341757595539093017578125},\"9\":{\"totalSymptoms\":1,\"percentage\":100}}'),
+(9, 2, '2023-05-08', '{\"1\":{\"totalSymptoms\":6,\"percentage\":50},\"4\":{\"totalSymptoms\":4,\"percentage\":50}}');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `diseases`
 --
 
 CREATE TABLE `diseases` (
   `disease_id` int(11) NOT NULL,
-  `disease` varchar(80) NOT NULL
+  `disease` varchar(80) NOT NULL,
+  `status` varchar(10) NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `diseases`
 --
 
-INSERT INTO `diseases` (`disease_id`, `disease`) VALUES
-(1, 'ADHD (attention deficit hyperactivity disorder)'),
-(4, 'Autism'),
-(5, 'Alzheimer\'s disorder'),
-(6, 'Anxiety disorders'),
-(7, 'Bipolar Affective Disorder'),
-(8, 'Behavior disorder');
+INSERT INTO `diseases` (`disease_id`, `disease`, `status`) VALUES
+(1, 'ADHD (attention deficit hyperactivity disorder)', 'active'),
+(4, 'Autism', 'active'),
+(5, 'Alzheimer\'s disorder', 'active'),
+(6, 'Anxiety disorders', 'active'),
+(7, 'Bipolar Affective Disorder', 'active'),
+(9, 'Developmental Expressive Language Disorder (DELD)', 'active'),
+(10, 'Behavior disorder', 'active');
 
 -- --------------------------------------------------------
 
@@ -82,8 +105,32 @@ INSERT INTO `disease_symptoms` (`dis_symp_id`, `disease_id`, `symptom_id`) VALUE
 (23, 6, 27),
 (24, 6, 28),
 (25, 6, 29),
-(26, 8, 30),
-(27, 8, 31);
+(28, 10, 30),
+(29, 10, 31),
+(30, 10, 32),
+(31, 9, 33);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `disease__treatmentcenter`
+--
+
+CREATE TABLE `disease__treatmentcenter` (
+  `dis_treatcenter_id` int(11) NOT NULL,
+  `disease_id` int(11) NOT NULL,
+  `treat_center_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `disease__treatmentcenter`
+--
+
+INSERT INTO `disease__treatmentcenter` (`dis_treatcenter_id`, `disease_id`, `treat_center_id`) VALUES
+(3, 1, 2),
+(4, 4, 2),
+(5, 9, 2),
+(6, 10, 2);
 
 -- --------------------------------------------------------
 
@@ -93,7 +140,7 @@ INSERT INTO `disease_symptoms` (`dis_symp_id`, `disease_id`, `symptom_id`) VALUE
 
 CREATE TABLE `symptoms` (
   `symptom_id` int(11) NOT NULL,
-  `symptom` varchar(50) NOT NULL
+  `symptom` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -123,7 +170,9 @@ INSERT INTO `symptoms` (`symptom_id`, `symptom`) VALUES
 (28, 'trembling'),
 (29, 'rapid heartbeat'),
 (30, 'Persistent aggression'),
-(31, 'Persistent destruction of property');
+(31, 'Persistent destruction of property'),
+(32, 'Persistent deceitfulness'),
+(33, 'Difficulty with language production or expression, such as word retrieval or putting words together to form sentences');
 
 -- --------------------------------------------------------
 
@@ -147,11 +196,66 @@ INSERT INTO `treatments` (`treatment_id`, `treatment`, `disease_id`) VALUES
 (3, 'Medications to slow the progression of the disease, cognitive therapy, and support for caregivers', 5),
 (4, 'Cognitive Behavioral Therapy (CBT), medication, mindfulness techniques, and lifestyle changes', 6),
 (5, 'Medication, psychotherapy, and lifestyle changes', 7),
-(6, 'Behavioral therapy, family therapy, and medication for co-occurring conditions', 8);
+(7, 'Speech therapy, language intervention, and accommodations in school or work', 9),
+(8, 'Behavioral therapy, family therapy, and medication for co-occurring conditions', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `treatment_center`
+--
+
+CREATE TABLE `treatment_center` (
+  `treat_center_id` int(11) NOT NULL,
+  `center_name` varchar(200) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `status` varchar(10) NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `treatment_center`
+--
+
+INSERT INTO `treatment_center` (`treat_center_id`, `center_name`, `description`, `status`) VALUES
+(2, 'REACH Behavior and Development Center | ABA Therapy, Speech Therapy, Occupational Therapy, Autism, ADHD, Child Development Center in Bahrain', 'Located in: Nakheel Center\r\nAddress: Nakheel Centre – 2nd Floor, Building 789, Road 1322, Saar\r\nAreas served: Bahrain.\r\nPhone: 3900 6065\r\nAppointments: reachabatherapy.com', 'inactive');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `role` varchar(10) NOT NULL DEFAULT 'member',
+  `profile_pic` varchar(250) NOT NULL DEFAULT 'default.jpg',
+  `userStatus` varchar(10) NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `profile_pic`, `userStatus`) VALUES
+(1, 'Admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'default.jpg', 'active'),
+(2, 'member one', 'member1@gmail.com', 'c7764cfed23c5ca3bb393308a0da2306', 'member', 'default.jpg', 'active'),
+(3, 'aa', 'aaa@aa.com', '7c3d596ed03ab9116c547b0eb678b247', 'member', 'default.jpg', 'active'),
+(4, 'bb', 'bb@b.com', '7229e3243ac72f445866a4f21f1b3508', 'member', 'default.jpg', 'active'),
+(5, 'c', 'cc@c.com', 'c1f68ec06b490b3ecb4066b1b13a9ee9', 'member', 'default.jpg', 'active'),
+(6, 'dd', 'd@d.com', '980ac217c6b51e7dc41040bec1edfec8', 'member', 'default.jpg', 'active');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `checkup_history`
+--
+ALTER TABLE `checkup_history`
+  ADD PRIMARY KEY (`check_hist_id`);
 
 --
 -- Indexes for table `diseases`
@@ -168,6 +272,14 @@ ALTER TABLE `disease_symptoms`
   ADD KEY `symptom_fk` (`symptom_id`);
 
 --
+-- Indexes for table `disease__treatmentcenter`
+--
+ALTER TABLE `disease__treatmentcenter`
+  ADD PRIMARY KEY (`dis_treatcenter_id`),
+  ADD KEY `disease_treatcenter_fk` (`disease_id`),
+  ADD KEY `treatcenter_fk` (`treat_center_id`);
+
+--
 -- Indexes for table `symptoms`
 --
 ALTER TABLE `symptoms`
@@ -181,32 +293,68 @@ ALTER TABLE `treatments`
   ADD KEY `treatments_disease_fk` (`disease_id`);
 
 --
+-- Indexes for table `treatment_center`
+--
+ALTER TABLE `treatment_center`
+  ADD PRIMARY KEY (`treat_center_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `checkup_history`
+--
+ALTER TABLE `checkup_history`
+  MODIFY `check_hist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `diseases`
 --
 ALTER TABLE `diseases`
-  MODIFY `disease_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `disease_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `disease_symptoms`
 --
 ALTER TABLE `disease_symptoms`
-  MODIFY `dis_symp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `dis_symp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `disease__treatmentcenter`
+--
+ALTER TABLE `disease__treatmentcenter`
+  MODIFY `dis_treatcenter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `symptoms`
 --
 ALTER TABLE `symptoms`
-  MODIFY `symptom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `symptom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `treatments`
 --
 ALTER TABLE `treatments`
-  MODIFY `treatment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `treatment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `treatment_center`
+--
+ALTER TABLE `treatment_center`
+  MODIFY `treat_center_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -218,6 +366,13 @@ ALTER TABLE `treatments`
 ALTER TABLE `disease_symptoms`
   ADD CONSTRAINT `disease_fk` FOREIGN KEY (`disease_id`) REFERENCES `diseases` (`disease_id`),
   ADD CONSTRAINT `symptom_fk` FOREIGN KEY (`symptom_id`) REFERENCES `symptoms` (`symptom_id`);
+
+--
+-- Constraints for table `disease__treatmentcenter`
+--
+ALTER TABLE `disease__treatmentcenter`
+  ADD CONSTRAINT `disease_treatcenter_fk` FOREIGN KEY (`disease_id`) REFERENCES `diseases` (`disease_id`),
+  ADD CONSTRAINT `treatcenter_fk` FOREIGN KEY (`treat_center_id`) REFERENCES `treatments` (`treatment_id`);
 
 --
 -- Constraints for table `treatments`
