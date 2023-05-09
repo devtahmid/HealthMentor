@@ -91,7 +91,7 @@ require("navbar_admin.php");
         </div>
       </div>
 
-      <button class='btn btn-primary btn-md col-4 mx-auto disabled'>Add disorder</button>
+      <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add disorder</button>
     </form>
 
     <!-- dropdown displaying all the results-->
@@ -165,9 +165,9 @@ require("navbar_admin.php");
 
     function toggleButtonColour() {
       if (document.getElementById('disorderName3').value.length > 0 && addedSymptomsList.length > 0 && document.getElementById('treatment3').value.length > 0)
-        document.querySelector('button').classList.remove('disabled');
+        document.getElementById('addButton').classList.remove('disabled');
       else
-        document.querySelector('button').classList.add('disabled');
+        document.getElementById('addButton').classList.add('disabled');
     }
 
     function checkSubmitability() {

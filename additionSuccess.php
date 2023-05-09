@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,14 @@
 </head>
 
 <body>
+  <?php
+  session_start();
+  if ($_SESSION['userType'] == "admin")
+    require("navbar_admin.php");
+  else
+    require("navbar_member.php");
 
+  ?>
   <div class="container-md" style="margin-top: 130px;">
     <!-- circle with tick svg from https://icons8.com/icons/set/check-->
     <div class="container d-flex justify-content-center align-items-center">

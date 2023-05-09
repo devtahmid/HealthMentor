@@ -92,19 +92,27 @@ require("navbar_member.php");
                 <button type="button" class="btn btn-info btn-lg disabled"><?php echo $diseaseNames[$key]; ?></button>
               </div>
               <div><b>Treatment: </b>
-                <?php echo $treatmentRow['treatment']; ?>
+                <?php
+                 $treatments= $treatmentRow['treatment'];
+                 $treatments = explode(",", $treatments);
+                 echo "<ol>";
+                 foreach ($treatments as $treatment) {
+                   echo "<li>$treatment</li>";
+                 }
+                 echo "</ol>";
+                ?>
               </div>
             </div>
         <?php
           }
         }
         $treatCenterIds = [];
-        $hiddenDataSql = "SELECT DISTINCT treat_center_id FROM disease__treatmentcenter WHERE disease_id IN (0"; // will return a treatment center if it exists, otherwise wont return
+        $hiddenDataSql = "SELECT DISTINCT disease__treatmentcenter.treat_center_id FROM disease__treatmentcenter INNER JOIN treatment_center ON disease__treatmentcenter.treat_center_id = treatment_center.treat_center_id WHERE disease__treatmentcenter.disease_id IN (0"; // will return a treatment center if it exists, otherwise wont return
         foreach ($disordersAndTheirCount as $key => $value) {
           if ($disordersAndTheirCount[$key]['percentage']  == $highestPercentage)
             $hiddenDataSql = $hiddenDataSql . ","  . $key;
         }
-        $hiddenDataSql = $hiddenDataSql . ")";
+        $hiddenDataSql = $hiddenDataSql . ") AND treatment_center.status='active' ";
         $result = $db->query($hiddenDataSql);
         while ($row = $result->fetch()) {
           array_push($treatCenterIds, $row['treat_center_id']);
@@ -115,7 +123,7 @@ require("navbar_member.php");
           <form action='findTreatment.php'>
             <input type='hidden' name="treatmentIds" value='<?php echo json_encode($treatCenterIds); ?>'>
 
-            <button type="submit" class="btn btn-primary mx-auto" style="display:block; width:140px;">Find Treatment</button>
+            <button type="submit" class="btn btn-primary mx-auto" style="display:block; width:200px;">Find Special Disorder Center</button>
           </form>
         </div>
       </div>

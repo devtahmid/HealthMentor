@@ -46,13 +46,13 @@ require("navbar_member.php");
 </head>
 
 <body>
-<br><br><br>
+  <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
-  <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
+    <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
   <div class="container-sm" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Treatment Service:</h2>
+    <h2 class="my-3 text-center">Special Disorder Center:</h2>
     <div class="row ">
       <div class="">
         <div class="row shadow rounded">
@@ -62,7 +62,7 @@ require("navbar_member.php");
         </div>
         <?php
         require("project_connection.php");
-        $sql = "SELECT * FROM treatment_center WHERE treat_center_id = :treat_center_id";
+        $sql = "SELECT * FROM treatment_center WHERE treat_center_id = :treat_center_id AND status='active'";
         $preparestatement = $db->prepare($sql);
         foreach ($treatCenterIds as $treat_center_id) {
           $preparestatement->bindParam(':treat_center_id', $treat_center_id);
@@ -72,13 +72,16 @@ require("navbar_member.php");
           if (!isset($treatmentRow['center_name']))
             continue;
         ?>
-          <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:420px;">
+          <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:430px;">
             <div class='mt-2'>
               <b><?php echo $treatmentRow['center_name']; ?></b>
             </div>
             <div style="white-space: pre-line; margin-top:-25px;">
 
-              <?php echo $treatmentRow['description']; ?>
+              <?php
+              echo $treatmentRow['description'];
+
+              ?>
 
             </div>
           </div>

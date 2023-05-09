@@ -8,7 +8,7 @@
   <?php
   require("navbar_member.php");
   session_start();
-  echo $_SESSION['userType']."ddsdsds";
+  
   ?>
   <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">

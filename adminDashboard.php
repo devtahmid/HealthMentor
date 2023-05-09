@@ -21,8 +21,8 @@
     <a class='btn btn-dark btn-lg d-block' href="new_disorder_form.php">Add Disorder</a><br>
     <a class='btn btn-dark btn-lg d-block' href="addTreatmentCenter.php">Add Treatment Center</a><br>
     <a class='btn btn-dark btn-lg d-block' href="delete_disorder.php">Delete Disorders</a><br>
-    <a class='btn btn-dark btn-lg d-block' href="">Manage Specialists</a><br>
-    <a class='btn btn-dark btn-lg d-block' href="manageTreatmentCenters.php">Manage Treatment Centers</a><br>
+    <a class='btn btn-dark btn-lg d-block' href="manageSpecialists.php">Manage Specialists</a><br>
+    <a class='btn btn-dark btn-lg d-block' href="manageTreatmentCenters.php">Manage Special Disorder Centers</a><br>
 
 
   </div>

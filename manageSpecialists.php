@@ -4,22 +4,21 @@ require("project_connection.php");
 if (isset($_GET['removeUser'])) {
   $removeUser = $_GET['userId'];
   try {
-    $sql = "UPDATE `users` SET `userStatus` = 'inactive' WHERE `id` = $removeUser AND role= 'member'";
+    $sql = "UPDATE `users` SET `userStatus` = 'inactive' WHERE `id` = $removeUser";
     $result = $db->query($sql);
   } catch (PDOException $e) {
     echo $e->getMessage();
     die();
   }
-}elseif (isset($_GET['reinstateUser'])) {
+} elseif (isset($_GET['reinstateUser'])) {
 
   $reinstateUser = $_GET['userId'];
   try {
-    $sql = "UPDATE `users` SET `userStatus` = 'active' WHERE `id` = $reinstateUser AND role= 'member'";
+    $sql = "UPDATE `users` SET `userStatus` = 'active' WHERE `id` = $reinstateUser";
     $result = $db->query($sql);
   } catch (PDOException $e) {
     echo $e->getMessage();
     die();
-
   }
 }
 
@@ -27,11 +26,11 @@ if (isset($_GET['removeUser'])) {
 require("navbar_admin.php");
 
 try {
-  $sql = "SELECT * FROM `users` where role= 'member'";
+  $sql = "SELECT * FROM `users` where role= 'specialist'";
   $result = $db->query($sql);
   $rows = $result->fetchAll();
 
-  $sql2 = "SELECT COUNT(*) FROM `users` where `userStatus` = 'active' AND role= 'member'";
+  $sql2 = "SELECT COUNT(*) FROM `users` where `userStatus` = 'active' AND role= 'specialist'";
   $countResult = $db->query($sql2);
   $count = $countResult->fetchColumn();
 } catch (PDOException $e) {
@@ -49,7 +48,7 @@ try {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage User Accounts</title>
+  <title>Manage Specialist Accounts</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -58,7 +57,7 @@ try {
 
   <br><br><br>
   <div class='container-lg'>
-    <h4 class="mt-3 mb-2 mx-auto text-center"> Manage User Accounts</h4>
+    <h4 class="mt-3 mb-2 mx-auto text-center"> Manage Specialist Accounts</h4>
 
     <div class="row">
 
@@ -68,7 +67,7 @@ try {
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">
-                  Number of total User Accounts</div>
+                  Number of total Specialist Accounts</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><?php echo count($rows) ?> </div>
               </div>
               <div class="col-auto">
@@ -85,7 +84,7 @@ try {
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-center">
-                  Number of active accounts</div>
+                  Number of active specialist accounts</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><?php echo $count; ?> </div>
               </div>
               <div class="col-auto">
@@ -135,6 +134,9 @@ try {
         </table>
       </div>
 
+      <div class="text-center">
+        <a class="btn btn-primary" href="add_specialist_form.php">Add Specialist</a>
+      </div>
     </div>
   </div>
 </body>

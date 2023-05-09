@@ -1,25 +1,8 @@
 <?php
-require("project_connection.php");
-try {
-  $sql = "SELECT * FROM diseases where status = 'active'";
-  $result = $db->query($sql);
-  $rows = $result->fetchAll();
-  $db = null;
-  $rowCleaned = [];
-  foreach ($rows as $row) {
-    $toPush = [];
-    $toPush['disease_id'] = $row['disease_id'];
-    $toPush['disease'] = $row['disease'];
-    array_push($rowCleaned, $toPush);
-  }
-  $json_rows = json_encode($rowCleaned, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-} catch (PDOException $e) {
-  echo $e->getMessage();
-  die();
-}
-
 
 require("navbar_admin.php");
+
+//EXPERTISE IS 150 CHAR MAX
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +12,7 @@ require("navbar_admin.php");
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Treatment Center</title>
+  <title>Add Specialist</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
@@ -42,31 +25,33 @@ require("navbar_admin.php");
   </div>
 
   <div class="container-md" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Add Treatment Center</h2>
+    <h2 class="my-3 text-center">Add Specialist</h2>
 
 
-    <form class="row" id="myForm" method='get' action="addTreatmentCenterProcess.php" onsubmit="return checkSubmitability()">
+    <form class="row" id="myForm" method='get' action="addSpecialistProcess.php" onsubmit="return checkSubmitability()">
 
       <div class="mb-3">
-        <label for="centerName3" class="form-label">Center Name</label>
-        <input type="text" class="form-control" id="centerName3" name='centerName' onkeyup="toggleButtonColour()" required>
-
+        <label for="centerName3" class="form-label">Specialist Name</label>
+        <input type="text" class="form-control" id="centerName3" name='centerName' onkeyup="toggleButtonColour()" minlength='2' required>
       </div>
 
 
-      <div class="row mb-3" id='chooseDisorder'>
-        <label class="form-label">Disorders Treated by the center</label>
+      <div class="mb-3">
+        <label for="userEmail3" class="form-label">Specialist Email</label>
+        <input type="email" class="form-control" id="userEmail3" name='userEmail' onkeyup="toggleButtonColour()" pattern="/^[a-zA-Z0-9._-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z.]{2,5}$/" required>
+      </div>
 
+
+      <div class="mb-3">
+        <label for="userPassword" class="form-label">Specialist Password</label>
+        <input type="password" class="form-control" id="userPassword" name='userPassword' pattern="/^[0-9A-Za-z]{5,16}$/" onkeyup="toggleButtonColour()" required>
+      </div>
+
+
+      <div class="row mb-4" id="chooseSymptom">
+        <label class="form-label" for='selectSymptom'>Enter Areas of Expertise</label>
         <div class="col-9 ">
-          <select class="form-select" id='selectSymptom'>
-            <option value="" disabled selected>Select from existing disorders</option>
-            <?php
-            foreach ($rows as $row) {
-              echo "<option value='" . $row['disease_id'] . "'>" . $row['disease'] . "</option>";
-            }
-            ?>
-
-          </select>
+          <input type="text" class="form-control" id="selectSymptom" maxlength="150">
         </div>
         <a class='btn btn-outline-success btn-sm col-3 fw-bolder' onclick="addSymptom('selectSymptom')">+</a>
       </div>
@@ -75,14 +60,7 @@ require("navbar_admin.php");
 
       <input type='hidden' name='addedDisordersList' value='' id='hiddenData' />
 
-      <div class="row mb-3">
-        <label for="moreDetails3" class="col-form-label">More details</label>
-        <div class="">
-          <textarea type="text" class="form-control" id="moreDetails3" name='description' onkeyup="toggleButtonColour()" required></textarea>
-        </div>
-      </div>
-
-      <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add Treatment Center</button>
+      <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add Specialist</button>
     </form>
 
 
@@ -91,7 +69,7 @@ require("navbar_admin.php");
   <script>
     var addedDisordersList = [];
 
-
+    //if you want better js code and one that makes sense, refer to the original at add_disorder_form.php
 
     function addSymptom(id) {
       var toAdd = document.getElementById(id).value;
@@ -99,10 +77,6 @@ require("navbar_admin.php");
       if (toAdd.length == 0)
         return;
 
-      if (id == 'selectSymptom') {
-        toAdd = document.getElementById(id).options[document.getElementById(id).selectedIndex].text;
-        toAddId = document.getElementById(id).value;
-      }
       //loop through the list to check if the symptom is already added
       for (var i = 0; i < addedDisordersList.length; i++)
         if (addedDisordersList[i].disorder == toAdd)
@@ -110,7 +84,6 @@ require("navbar_admin.php");
 
       createRow(toAdd);
       addedDisordersList.push({
-        'disorder_id': toAddId,
         'disorder': toAdd
       });
       document.getElementById('hiddenData').value = JSON.stringify(addedDisordersList);
@@ -133,7 +106,7 @@ require("navbar_admin.php");
         </div>
         <a class='btn btn-outline-danger btn-sm col-3 fw-bolder' onClick='removeInput(this)'>-</a>`;
 
-      document.getElementById('chooseDisorder').insertAdjacentElement("afterend", disorderInputDiv);
+      document.getElementById('chooseSymptom').insertAdjacentElement("afterend", disorderInputDiv);
     }
 
     function removeInput(thisElement) {
@@ -151,16 +124,15 @@ require("navbar_admin.php");
     }
 
     function toggleButtonColour() {
-      console.log(document.getElementById('centerName3').value.length, addedDisordersList.length > 0, document.getElementById('moreDetails3').value.length);
 
-      if (document.getElementById('centerName3').value.length > 0 && addedDisordersList.length > 0 && document.getElementById('moreDetails3').value.length > 0)
+      if (document.getElementById('centerName3').value.length > 0 && document.getElementById('userEmail3').value.length > 0 && document.getElementById('userPassword').value.length > 0 && addedDisordersList.length > 0)
         document.getElementById('addButton').classList.remove('disabled');
       else
         document.getElementById('addButton').classList.add('disabled');
     }
 
     function checkSubmitability() {
-      if (document.getElementById('centerName3').value.length > 0 && addedDisordersList.length > 0 && document.getElementById('moreDetails3').value.length > 0)
+      if (document.getElementById('centerName3').value.length > 0 && document.getElementById('userEmail3').value.length > 0 && document.getElementById('userPassword').value.length > 0 && addedDisordersList.length > 0)
         return true;
       else
         return false;

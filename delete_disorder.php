@@ -62,7 +62,7 @@ $count = $countResult->fetchColumn();
 
     <div class="row">
 
-      <div class="col-xl-4 col-md-6 mb-4">
+      <div class="col-xl-4 col-md-6 mb-4 ms-auto">
         <div class="card border-left-primary shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -80,12 +80,12 @@ $count = $countResult->fetchColumn();
       </div>
 
 
-      <div class="col-xl-4 col-md-6 mb-4">
+      <div class="col-xl-4 col-md-6 mb-4 me-auto">
         <div class="card border-left-primary shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-center">
                   Number of Disorders active</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><?php echo $count; ?> </div>
               </div>

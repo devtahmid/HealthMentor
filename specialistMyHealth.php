@@ -10,7 +10,7 @@ require("navbar_member.php");
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Self Check-up History</title>
+  <title>Member Check-up History</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   <style>
@@ -45,22 +45,30 @@ require("navbar_member.php");
 <body>
   <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
-  <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
+    <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
   <div class="container-md" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Check-up History:</h2>
+    <h2 class="my-3 text-center">Member Check-up History:</h2>
     <div class="row ">
-      <div class="">
-        <div class="row shadow rounded">
+      <div class="vstack gap-3">
+        <div class="row shadow rounded"> <!-- only search -->
+          <form>
+            <label for="searchHistory" class="col-sm-3 col-md-4 col-form-label">Enter Member ID</label>
+
+            <input type="text" id='searchHistory' class="form-control col-sm-6 col-md-5">
+            <button type="submit" class="btn btn-dark col-sm-3 col-md-3">Search</button>
+          </form>
+        </div>
+        <div class="row shadow-sm rounded">
 
           <?php
-          require('project_connection.php');
+          /* require('project_connection.php');
           session_start();
-          $userId = $_SESSION['userId'];
+          //$userId = $_SESSION['userId'];
           $sql = "SELECT * FROM checkup_history WHERE user_id = '$userId' ORDER BY date DESC";
           $result = $db->query($sql);
-          $rows = $result->fetchAll();
+          $rows = $result->fetchAll(); */
           ?>
           <table class="table table-bordered border-black table-striped">
             <thead>
@@ -71,7 +79,7 @@ require("navbar_member.php");
             </thead>
             <tbody>
               <?php
-              $sqlDisorderName = "SELECT disease FROM diseases WHERE disease_id = :disease_id";
+              /*  $sqlDisorderName = "SELECT disease FROM diseases WHERE disease_id = :disease_id";
               $preparedstmt = $db->prepare($sqlDisorderName);
 
               foreach ($rows as $row) {
@@ -89,6 +97,7 @@ require("navbar_member.php");
                 echo "<td>" . $resultCleaned . "</td>";
                 echo "</tr>";
               }
+              */
               ?>
             </tbody>
           </table>

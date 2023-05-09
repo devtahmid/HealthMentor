@@ -52,6 +52,9 @@ elseif ($_POST['submit'] == 'Login') {  // if login clicked
       if ($userRow['role'] == "member") {
         $_SESSION['userType'] = "member";
         header('Location: memberDashboard.php');
+      } elseif ($userRow['role'] == "specialist") {
+        $_SESSION['userType'] = "specialist";
+        header('Location: specialistDashboard.php');
       } else {
         $_SESSION['userType'] = "admin";
         header('Location: adminDashboard.php');

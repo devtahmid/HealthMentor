@@ -44,7 +44,7 @@ try {
   $db->rollback();
   echo "line45" . $e->getMessage();
 }
-
+$treatment = htmlspecialchars(stripslashes(strip_tags($treatment)));
 //adding treatment to db
 try {
   $db->beginTransaction();
@@ -67,14 +67,15 @@ try {
   $sql = "INSERT INTO `disease_symptoms` (`disease_id`, `symptom_id`) VALUES (:disease_id, :symptom_id)";
   $preparestatement = $db->prepare($sql);
   foreach ($addedSymptomsList as $symp) {
-    if ($symp['symptom_id'] == "-1")
+    if ($symp['symptom_id'] == "-1") //check the form. -1 means users added a new symptom
       continue;
-
+//old symptoms below
     $preparestatement->bindParam(':disease_id', $disease_id);
     $preparestatement->bindParam(':symptom_id', $symp['symptom_id']);
     $preparestatement->execute();
   }
-  foreach ($newSymptomsId as $symp) {
+  foreach ($newSymptomsId as $symp) { //new symptoms below
+    $symp = htmlspecialchars(stripslashes(strip_tags($symp)));
     $preparestatement->bindParam(':disease_id', $disease_id);
     $preparestatement->bindParam(':symptom_id', $symp);
     $preparestatement->execute();

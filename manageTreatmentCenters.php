@@ -48,7 +48,7 @@ try {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Treatment Centers</title>
+  <title>Manage Special Disorder Centers</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -57,7 +57,7 @@ try {
 
   <br><br><br>
   <div class='container-lg'>
-    <h4 class="mt-3 mb-2 mx-auto text-center"> Manage Treatment Centers</h4>
+    <h4 class="mt-3 mb-2 mx-auto text-center"> Manage Special Disorder Centers</h4>
 
     <div class="row">
 
@@ -67,7 +67,7 @@ try {
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">
-                  Total Number of Treatment Centers</div>
+                  Total Number of Special Disorder Centers</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><?php echo count($rows) ?> </div>
               </div>
               <div class="col-auto">
@@ -84,7 +84,7 @@ try {
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-center">
-                  Number of active Treatment Centers</div>
+                  Number of active Special Disorder Centers</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><?php echo $count; ?> </div>
               </div>
               <div class="col-auto">
@@ -99,7 +99,7 @@ try {
         <table class="table table-bordered table-sm">
           <thead>
             <tr>
-              <th scope="col">Treatment Center Name</th>
+              <th scope="col">Special Disorder Center Name</th>
               <th scope="col">Description</th>
               <th scope="col">Action</th>
             </tr>

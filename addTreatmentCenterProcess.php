@@ -17,7 +17,8 @@ try {
   $sql = "INSERT INTO treatment_center (center_name, description) VALUES (:center_name, :description)";
 
   $preparestatement1 = $db->prepare($sql);
-
+  $centerName = htmlspecialchars(stripslashes(strip_tags($centerName)));
+  $description = htmlspecialchars(stripslashes(strip_tags($description)));
   $preparestatement1->bindParam('center_name', $centerName);
   $preparestatement1->bindParam('description', $description);
   $preparestatement1->execute();
