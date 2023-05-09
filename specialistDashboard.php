@@ -6,7 +6,7 @@
 
 <body>
   <?php
-  require("navbar_member.php");
+  require("navbar_specialist.php");
   session_start();
 
   ?>
@@ -17,7 +17,7 @@
   </div>
   <div style="margin:auto; width:30%; height:50%; margin-top: 10%;">
     <a class='btn btn-dark btn-lg d-block' href="specialistMyHealth.php">Member Checkup History</a><br>
-    <a class='btn btn-dark btn-lg d-block' href="php">Chat with members</a><br>
+    <a class='btn btn-dark btn-lg d-block' href="specialistChatHome.php">Chat with members</a><br>
 
 
   </div>

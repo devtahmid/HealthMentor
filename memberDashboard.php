@@ -8,7 +8,7 @@
   <?php
   require("navbar_member.php");
   session_start();
-  
+
   ?>
   <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
@@ -19,7 +19,7 @@
     <a class='btn btn-dark btn-lg d-block' href='self_checkup_form.php'>Self Checkup</a><br>
     <a class='btn btn-dark btn-lg d-block' href="myHealth.php">My Health</a><br>
     <a class='btn btn-dark btn-lg d-block' href="specialDisorderCenters.php">Special Disorder Centers</a><br>
-    <a class='btn btn-dark btn-lg d-block' href="php">Expert/ Specialist</a><br>
+    <a class='btn btn-dark btn-lg d-block' href="memberChatHome.php">Expert/ Specialist</a><br>
     <a class='btn btn-dark btn-lg d-block' href="emergency.php">Emergency</a><br>
 
 

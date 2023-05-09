@@ -28,7 +28,7 @@ require("navbar_admin.php");
     <h2 class="my-3 text-center">Add Specialist</h2>
 
 
-    <form class="row" id="myForm" method='get' action="addSpecialistProcess.php" onsubmit="return checkSubmitability()">
+    <form class="row" id="myForm" method='post' action="addSpecialistProcess.php" onsubmit="return checkSubmitability()">
 
       <div class="mb-3">
         <label for="centerName3" class="form-label">Specialist Name</label>
@@ -38,13 +38,13 @@ require("navbar_admin.php");
 
       <div class="mb-3">
         <label for="userEmail3" class="form-label">Specialist Email</label>
-        <input type="email" class="form-control" id="userEmail3" name='userEmail' onkeyup="toggleButtonColour()" pattern="/^[a-zA-Z0-9._-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z.]{2,5}$/" required>
+        <input type="text" class="form-control" id="userEmail3" name='userEmail' onkeyup="toggleButtonColour()" required>
       </div>
 
 
       <div class="mb-3">
         <label for="userPassword" class="form-label">Specialist Password</label>
-        <input type="password" class="form-control" id="userPassword" name='userPassword' pattern="/^[0-9A-Za-z]{5,16}$/" onkeyup="toggleButtonColour()" required>
+        <input type="password" class="form-control" id="userPassword" name='userPassword' onkeyup="toggleButtonColour()" required>
       </div>
 
 

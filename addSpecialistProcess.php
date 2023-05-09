@@ -3,8 +3,8 @@
 //below code is copy paste with only variables name not properly adjusted
 
 
-if (!isset($_GET['centerName']))
-  header('Location: new_specialist_form.php');
+if (!isset($_POST['centerName']))
+  header('Location: add_specialist_form.php');
 
 extract($_POST);
 $addedExpertiseList = json_decode($addedDisordersList, true);
@@ -41,6 +41,7 @@ try {
   $preparestatement = $db->prepare($sql);
   $newSymptomsId = [];
   foreach ($addedExpertiseList as $expertise) {
+    $preparestatement->bindParam(':specialistId', $specialistId);
     $preparestatement->bindParam(':expertise', $expertise['disorder']);
     //as i said at the top, this wont make sense day after tomorrow
     $preparestatement->execute();

@@ -51,6 +51,9 @@ try {
     require('navbar_member.php');
   else if ($_SESSION['userType'] == "admin")
     require('navbar_admin.php');
+  else if ($_SESSION['userType'] == "specialist")
+    require('navbar_specialist.php');
+
   ?>
   <br /><br /> <br />
   <div class="container">

@@ -8,7 +8,8 @@ if (isset($_SESSION['userId'])) {
     header('Location: adminDashboard.php');
   elseif ($_SESSION['userType'] == "member")
     header('Location: memberDashboard.php');
-}
-else {
+  elseif ($_SESSION['userType'] == "specialist")
+    header('Location: specialistDashboard.php');
+} else {
   header('Location: login.php');
 }

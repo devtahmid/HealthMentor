@@ -1,6 +1,14 @@
 <?php
-require("navbar_member.php");
+require("navbar_specialist.php");
+if (isset($_GET['memberId'])) {
 
+
+  require('project_connection.php');
+  $userId = $_GET['memberId'];
+  $sql = "SELECT * FROM checkup_history WHERE user_id = '$userId' ORDER BY date DESC";
+  $result = $db->query($sql);
+  $rows = $result->fetchAll();
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,20 +64,11 @@ require("navbar_member.php");
           <form>
             <label for="searchHistory" class="col-sm-3 col-md-4 col-form-label">Enter Member ID</label>
 
-            <input type="text" id='searchHistory' class="form-control col-sm-6 col-md-5">
+            <input type="text" id='searchHistory' name='memberId' class="form-control col-sm-6 col-md-5">
             <button type="submit" class="btn btn-dark col-sm-3 col-md-3">Search</button>
           </form>
         </div>
         <div class="row shadow-sm rounded">
-
-          <?php
-          /* require('project_connection.php');
-          session_start();
-          //$userId = $_SESSION['userId'];
-          $sql = "SELECT * FROM checkup_history WHERE user_id = '$userId' ORDER BY date DESC";
-          $result = $db->query($sql);
-          $rows = $result->fetchAll(); */
-          ?>
           <table class="table table-bordered border-black table-striped">
             <thead>
               <tr>
@@ -79,25 +78,27 @@ require("navbar_member.php");
             </thead>
             <tbody>
               <?php
-              /*  $sqlDisorderName = "SELECT disease FROM diseases WHERE disease_id = :disease_id";
-              $preparedstmt = $db->prepare($sqlDisorderName);
+              if (isset($_GET['memberId'])) {
 
-              foreach ($rows as $row) {
-                $jsonResult = json_decode($row['result_in_json'],true);
-                echo "<tr>";
-                echo "<td >" . $row['date'] . "</td>";
-                $resultCleaned = "";
-                foreach ($jsonResult as $key => $row) {
-                  $preparedstmt->bindParam(':disease_id', $key);
-                  $preparedstmt->execute();
-                  $disorderName = $preparedstmt->fetch();
-                  $resultCleaned .= $disorderName['disease'] . ":" . $jsonResult[$key]['percentage'] . "% <br>";
+                $sqlDisorderName = "SELECT disease FROM diseases WHERE disease_id = :disease_id";
+                $preparedstmt = $db->prepare($sqlDisorderName);
+
+                foreach ($rows as $row) {
+                  $jsonResult = json_decode($row['result_in_json'], true);
+                  echo "<tr>";
+                  echo "<td >" . $row['date'] . "</td>";
+                  $resultCleaned = "";
+                  foreach ($jsonResult as $key => $row) {
+                    $preparedstmt->bindParam(':disease_id', $key);
+                    $preparedstmt->execute();
+                    $disorderName = $preparedstmt->fetch();
+                    $resultCleaned .= $disorderName['disease'] . ":" . $jsonResult[$key]['percentage'] . "% <br>";
+                  }
+                  $resultCleaned = rtrim($resultCleaned, " ,");
+                  echo "<td>" . $resultCleaned . "</td>";
+                  echo "</tr>";
                 }
-                $resultCleaned = rtrim($resultCleaned, " ,");
-                echo "<td>" . $resultCleaned . "</td>";
-                echo "</tr>";
               }
-              */
               ?>
             </tbody>
           </table>
