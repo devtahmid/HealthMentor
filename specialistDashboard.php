@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
 

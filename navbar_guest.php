@@ -12,13 +12,11 @@
         <h3>AbleMind </h3>
         <ul>
           <li><a href="homepage.php">Hompage</a></li>
-          <li><a href="specialistDashboard.php">Services</a></li>
           <li><a href="Knowledge.php">Knowledge</a></li>
           <li><a href="games.php">Games</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="contact.php">Contact Us</a></li>
-          <li><a href="profile.php">Profile</a></li>
-          <li><a href="logout.php">Logout</a></li>
+          <li><a href="login.php">Login</a></li>
         </ul>
         <h4>Close</h4>
 

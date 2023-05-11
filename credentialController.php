@@ -103,6 +103,25 @@ elseif ($_POST['submit'] == 'Login') {  // if login clicked
       $db->rollBack();
     }
 
+//adding security answer into db
+try {
+  $db->beginTransaction();
+  $sql = "INSERT INTO `forgot_password_answers`(`user_id`, `question`, `answer`) VALUES (:userId,:question ,:answer)";
+  $insert = $db->prepare($sql);
+  $insert->bindParam(':userId', $userId);
+  $insert->bindParam(':question', $_POST['security_question']);
+  $insert->bindParam(':answer', $_POST['security_answer']);
+  $insert->execute();
+  $db->commit();
+} catch (PDOException $e) {
+  echo "we rolled back security answer insertion into the table ";
+  echo $e->getMessage();
+  $db->rollBack();
+}
+
+
+//echo "user id is " . $userId;
+
     $_SESSION['userId'] = $userId;
     $_SESSION['userType'] = 'member';
     //echo "user id is " . $_SESSION['userId'];

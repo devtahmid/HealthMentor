@@ -38,12 +38,13 @@ else if ($_SESSION['userType'] == "specialist")
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   <title>Chat</title>
 </head>
 
-<body style='height:100vh; width:100vw;'>
-  <div class="container-md" style="margin-top: 60px; margin-bottom:30px; height:100%;">
+<body style='width:100vw;'>
+  <div class="container-md" style="margin-bottom:32px;  position:relative; bottom:2px; overflow-y:auto;">
     <div class="row border border-3 border-black">
       <?php
 

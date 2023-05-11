@@ -31,13 +31,14 @@ require("navbar_admin.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Disorder</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
 
 <body>
-<br><br><br>
+  <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
-  <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
+    <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
   <div class="container-md" style="margin-top: 30px;">
@@ -83,6 +84,20 @@ require("navbar_admin.php");
       <!-- symptoms added by user will appear below -->
 
       <input type='hidden' name='addedSymptomsList' value='' id='hiddenData' />
+
+      <div class="row mb-3">
+        <label for="risk3" class="col-form-label">Risk Type</label>
+        <div class="">
+          <select class="form-select" id='risk3' name='riskType' required onchange="toggleButtonColour()">
+            <option value="" disabled selected>Select Risk type</option>
+            <option value="Low risk">Low Risk</option>
+            <option value="Medium risk">Medium Risk</option>
+            <option value="High risk">High Risk</option>
+          </select>
+        </div>
+
+
+      </div>
 
       <div class="row mb-3">
         <label for="treatment3" class="col-form-label">Treatment</label>
@@ -164,14 +179,14 @@ require("navbar_admin.php");
     }
 
     function toggleButtonColour() {
-      if (document.getElementById('disorderName3').value.length > 0 && addedSymptomsList.length > 0 && document.getElementById('treatment3').value.length > 0)
+      if (document.getElementById('disorderName3').value.length > 0 && addedSymptomsList.length > 0 && document.getElementById('treatment3').value.length > 0 && document.getElementById('risk3').value.length > 0)
         document.getElementById('addButton').classList.remove('disabled');
       else
         document.getElementById('addButton').classList.add('disabled');
     }
 
     function checkSubmitability() {
-      if (document.getElementById('disorderName3').value.length > 0 && addedSymptomsList.length > 0 && document.getElementById('treatment3').value.length > 0)
+      if (document.getElementById('disorderName3').value.length > 0 && addedSymptomsList.length > 0 && document.getElementById('treatment3').value.length > 0 && document.getElementById('risk3').value.length > 0)
         return true;
       else
         return false;

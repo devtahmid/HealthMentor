@@ -44,9 +44,9 @@ require("navbar_member.php");
 </head>
 
 <body>
-<br><br><br>
+  <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
-  <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
+    <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
   <div class="container-lg" style="margin-top: 30px;">
@@ -86,20 +86,33 @@ require("navbar_member.php");
             $treatmentRow = $result->fetch();
             array_push($treatmentIds, $treatmentRow['treatment_id']);
 
+            $riskSql = "SELECT riskType FROM diseases WHERE disease_id =" . $key;
+            $riskResult = $db->query($riskSql);
+            $riskRow = $riskResult->fetch();
         ?>
-            <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:420px;">
+            <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:450px;">
               <div class='text-center my-2'>
-                <button type="button" class="btn btn-info btn-lg disabled"><?php echo $diseaseNames[$key]; ?></button>
+                <button type="button" class="btn btn-dark btn-lg disabled"><?php echo $diseaseNames[$key]; ?></button>
+              </div>
+              <div class='text-start my-1'>
+                <?php
+                if ($riskRow['riskType'] == "Low risk")
+                  echo "<button type='button' class='btn btn-info btn-sm disabled'>" . $riskRow['riskType'] . "</button>";
+                else if ($riskRow['riskType'] == "Medium risk")
+                  echo "<button type='button' class='btn btn-warning btn-sm disabled'>" . $riskRow['riskType'] . "</button>";
+                else if ($riskRow['riskType'] == "High risk")
+                  echo "<button type='button' class='btn btn-danger btn-sm disabled'>" . $riskRow['riskType'] . "</button>";
+                ?>
               </div>
               <div><b>Treatment: </b>
                 <?php
-                 $treatments= $treatmentRow['treatment'];
-                 $treatments = explode(",", $treatments);
-                 echo "<ol>";
-                 foreach ($treatments as $treatment) {
-                   echo "<li>$treatment</li>";
-                 }
-                 echo "</ol>";
+                $treatments = $treatmentRow['treatment'];
+                $treatments = explode(",", $treatments);
+                echo "<ol>";
+                foreach ($treatments as $treatment) {
+                  echo "<li>$treatment</li>";
+                }
+                echo "</ol>";
                 ?>
               </div>
             </div>

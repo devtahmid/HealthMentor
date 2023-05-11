@@ -28,6 +28,7 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Profile</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <style>
     .form-control {
       font-size: 18px;
@@ -83,7 +84,7 @@ try {
               <div class="mb-2">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" name='password' onkeyup="checkPWD(this.value)">
-                <div id="profile_pwd_msg" class="form-text">min 6 char, 1 uppercase, 1 lowercase, 1 number</div>
+                <div id="profile_pwd_msg" class="form-text">min 5 alphanumerica characters</div>
               </div>
 
               <div>

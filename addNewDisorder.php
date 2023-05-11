@@ -13,9 +13,10 @@ require("project_connection.php");
 //entering disease name into db
 try {
   $db->beginTransaction();
-  $sql = "INSERT INTO `diseases` (`disease`) VALUES (:disease)";
+  $sql = "INSERT INTO `diseases` (`disease`, `status` , `riskType`) VALUES (:disease , 'active' , :riskType)";
   $preparestatement = $db->prepare($sql);
   $preparestatement->bindParam(':disease', $disorderName);
+  $preparestatement->bindParam(':riskType', $riskType);
   $preparestatement->execute();
   $disease_id = $db->lastInsertId();
   $db->commit();

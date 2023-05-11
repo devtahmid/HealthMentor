@@ -14,6 +14,7 @@ require("navbar_admin.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Specialist</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 </head>
 

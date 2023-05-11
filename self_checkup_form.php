@@ -18,7 +18,19 @@ try {
   die();
 }
 
-require("navbar_member.php");
+
+if (session_status() !== PHP_SESSION_ACTIVE)
+  session_start();
+if (isset($_SESSION['userType'])) {
+  if ($_SESSION['userType'] == "member")
+    require('navbar_member.php');
+  else if ($_SESSION['userType'] == "admin")
+    require('navbar_admin.php');
+  else if ($_SESSION['userType'] == "specialist")
+    require('navbar_specialist.php');
+} else
+  require('navbar_guest.php');
+
 ?>
 
 
@@ -31,7 +43,8 @@ require("navbar_member.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Self Check-up</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
- <!--  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script> -->
+  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   <style>
     @media (max-width: 767px) {
@@ -63,9 +76,9 @@ require("navbar_member.php");
 </head>
 
 <body>
-<br><br><br>
+  <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
-  <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
+    <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
   <div class="container-lg" style="margin-top: 30px;">

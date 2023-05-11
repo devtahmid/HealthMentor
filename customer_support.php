@@ -1,20 +1,20 @@
 <?php
 require("project_connection.php");
 
-if (isset($_GET['deleteDisorder'])) {
-  $deleteDisorder = $_GET['disorderId'];
+if (isset($_GET['markAsRead'])) {
+  $messageId = $_GET['messageId'];
   try {
-    $sql = "UPDATE `diseases` SET `status` = 'inactive' WHERE `disease_id` = $deleteDisorder";
+    $sql = "UPDATE `customer_support_messages` SET `status` = 'read' WHERE `c_id` = $messageId";
     $result = $db->query($sql);
   } catch (PDOException $e) {
     echo $e->getMessage();
     die();
   }
-} elseif (isset($_GET['reinstateDisorder'])) {
+} elseif (isset($_GET['markAsUnread'])) {
 
-  $reinstateDisorder = $_GET['disorderId'];
+  $messageId = $_GET['messageId'];
   try {
-    $sql = "UPDATE `diseases` SET `status` = 'active' WHERE `disease_id` = $reinstateDisorder";
+    $sql = "UPDATE `customer_support_messages` SET `status` = 'unread' WHERE `c_id` = $messageId";
     $result = $db->query($sql);
   } catch (PDOException $e) {
     echo $e->getMessage();
@@ -22,18 +22,17 @@ if (isset($_GET['deleteDisorder'])) {
   }
 }
 
+
 require("navbar_admin.php");
 
 try {
-  $sql = "SELECT * FROM `diseases`";
+  $sql = "SELECT * FROM `customer_support_messages` ORDER BY status DESC, dateTime ASC";
   $result = $db->query($sql);
   $rows = $result->fetchAll();
 
-
-$sqlCount = "SELECT COUNT(*) FROM `diseases` where `status` = 'active'";
-$countResult = $db->query($sqlCount);
-$count = $countResult->fetchColumn();
-
+  $sql2 = "SELECT COUNT(*) FROM `customer_support_messages` where `status` = 'unread'";
+  $countResult = $db->query($sql2);
+  $count = $countResult->fetchColumn();
 } catch (PDOException $e) {
   echo $e->getMessage();
   die();
@@ -49,27 +48,26 @@ $count = $countResult->fetchColumn();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Delete Disorders</title>
+  <title>Customer Messages</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
-
 </head>
 
 <body>
 
   <br><br><br>
   <div class='container-lg'>
-    <h4 class="mt-3 mb-2 mx-auto text-center"> Delete Disorder</h4>
+    <h4 class="mt-3 mb-2 mx-auto text-center"> Customer Messages</h4>
 
     <div class="row">
 
-      <div class="col-xl-4 col-md-6 mb-4 ms-auto">
+      <div class="col-xl-3 col-md-6 mb-4 ms-auto">
         <div class="card border-left-primary shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">
-                  Total Number of Disorders</div>
+                  Total Number of Messages Received</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><?php echo count($rows) ?> </div>
               </div>
               <div class="col-auto">
@@ -80,14 +78,13 @@ $count = $countResult->fetchColumn();
         </div>
       </div>
 
-
-      <div class="col-xl-4 col-md-6 mb-4 me-auto">
+      <div class="col-xl-3 col-md-6 mb-4 me-auto">
         <div class="card border-left-primary shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1 text-center">
-                  Number of Disorders active</div>
+                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1 text-center">
+                  Number of unread messages</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><?php echo $count; ?> </div>
               </div>
               <div class="col-auto">
@@ -98,13 +95,14 @@ $count = $countResult->fetchColumn();
         </div>
       </div>
 
-
-
       <div class="table-responsive text-center">
-        <table class="table table-bordered table-sm border-black">
+        <table class="table table-bordered table-sm">
           <thead>
             <tr>
-              <th scope="col">Disorder Name</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Message</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -114,16 +112,18 @@ $count = $countResult->fetchColumn();
             foreach ($rows as $row) {
             ?>
               <tr>
-                <td><?php echo $row['disease']; ?></td>
-
+                <td><?php echo $row['name']; ?></td>
+                <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a></td>
+                <td><?php echo $row['phone']; ?></td>
+                <td style="white-space: pre-line;"><?php echo $row['message']; ?></td>
                 <td>
                   <form>
-                    <input type="hidden" name='disorderId' <?php echo "value='" . $row['disease_id'] . "'"; ?> />
+                    <input type="hidden" name='messageId' <?php echo "value='" . $row['c_id'] . "'"; ?> />
                     <?php
-                    if ($row['status'] == 'active')
-                      echo "<input type='submit' name='deleteDisorder' class='btn btn-outline-danger btn-sm' value='Remove'/>";
+                    if ($row['status'] == 'unread')
+                      echo "<input type='submit' name='markAsRead' class='btn btn-outline-success btn-sm' value='Mark as read'/>";
                     else
-                      echo "<input type='submit' name='reinstateDisorder' class='btn btn-outline-success btn-sm' value='Reinstate'/>";
+                      echo "<input type='submit' name='markAsUnread' class='btn btn-outline-primary btn-sm' value='Mark as Unread'/>";
                     ?>
                   </form>
                 </td>

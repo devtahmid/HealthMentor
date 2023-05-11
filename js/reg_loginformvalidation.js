@@ -1,6 +1,6 @@
 //this page is used to validate the inputs in login and sign up page
 
-var nameFlag = emailFlag = passwordFlag = cnfmpasswordFlag = false;
+var nameFlag = emailFlag = passwordFlag = cnfmpasswordFlag = securityFlag = false;
 function checkFN(name) { //check full name
   var nameExp = /^([a-z]+\s)*[a-z]+$/i;
   if (name.length == 0) {
@@ -20,6 +20,7 @@ function checkFN(name) { //check full name
   document.getElementById('name_msg').style.color = color;
   document.getElementById('name_msg').innerHTML = msg;
 }
+
 
 function checkPWD(pwd, id) { //check password
 
@@ -100,10 +101,30 @@ function checkMAIL(mail, typeOfForm) { //check mail format
   document.getElementById(typeOfForm).innerHTML = msg;
 }
 
+function verifySecurityAnswer(ans) { //check security answer
+  if (ans.length == 0) {
+    msg = "";
+    securityFlag = false;
+  }
+  else if (ans.length < 2) {
+    msg = "Invalid answer";
+    color = "red";
+    securityFlag = false;
+  }
+  else {
+    msg = "Valid answer";
+    color = "green";
+    securityFlag = true;
+  }
+  document.getElementById('security_msg').style.color = color;
+  document.getElementById('security_msg').innerHTML = msg;
+}
+
+
 function checkRegistrationInputs() {
   document.forms[1].JSEnabled.value = "TRUE";
   console.log(nameFlag, emailFlag, passwordFlag, cnfmpasswordFlag)
-  return (nameFlag && emailFlag && passwordFlag && cnfmpasswordFlag);
+  return (nameFlag && emailFlag && passwordFlag && cnfmpasswordFlag && securityFlag);
 
 }
 

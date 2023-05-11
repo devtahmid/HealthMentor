@@ -15,6 +15,7 @@ require("navbar_member.php");
   <title>Treatment Service</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   <style>
     @media (max-width: 767px) {
@@ -61,6 +62,17 @@ require("navbar_member.php");
 
         </div>
         <?php
+
+        if (count($treatCenterIds) == 0) {
+          echo "<div class='my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto' style='max-height:420px;'>
+                  <div class='mt-2'>
+                    None found
+                  </div>
+                  <div style='white-space: pre-line;'>
+                  </div>
+                </div>";
+        }
+
         require("project_connection.php");
         $sql = "SELECT * FROM treatment_center WHERE treat_center_id = :treat_center_id AND status='active'";
         $preparestatement = $db->prepare($sql);

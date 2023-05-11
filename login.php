@@ -9,6 +9,8 @@
     <meta charset="UTF-8">
     <title>AnimaForm</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   </head>
   <link rel="stylesheet" href="./css/login.css">
 
@@ -17,6 +19,19 @@
 </head>
 
 <body>
+  <?php
+  if (session_status() !== PHP_SESSION_ACTIVE)
+    session_start();
+  if (isset($_SESSION['userType'])) {
+    if ($_SESSION['userType'] == "member")
+      require('navbar_member.php');
+    else if ($_SESSION['userType'] == "admin")
+      require('navbar_admin.php');
+    else if ($_SESSION['userType'] == "specialist")
+      require('navbar_specialist.php');
+  } else
+    require('navbar_guest.php');
+  ?>
   <!-- partial:index.partial.html -->
   <section class="forms-section">
     <h1 class="section-title">Login / Sign-Up </h1>
@@ -47,6 +62,7 @@
               ?>
             </div>
           </fieldset>
+          <a href="recoverPassword.php">Forgot password?</a>
           <input type='hidden' name='JSEnabled' value='false'>
           <input type="submit" name='submit' value="Login" class="btn-login">
         </form>
@@ -74,11 +90,25 @@
               <input id="signup-password" name='password' type="password" onkeyup="checkPWD(this.value,'reg_pwd_msg')" required>
               <span id='reg_pwd_msg'></span>
             </div>
+
             <div class="input-block">
               <label for="signup-password-confirm">Confirm password</label>
               <input id="signup-password-confirm" type="password" name='confirm_password' onkeyup="confirmPWD(this.value)" required>
               <span id='cfmpwd_msg'></span>
             </div>
+
+            <div class="input-block">
+              <label for="signup-password-confirm">Select security prompt</label>
+              <select name="security_question" id="security_question" required>
+                <option value="What's your pet's name?">What's your pet's name?</option>
+                <option value="Where were you born?">Where were you born?</option>
+                <option value="What's your nickname?">What's your nickname?</option>
+              </select>
+              <input id="signup-password-confirm" type="password" name='security_answer' onkeyup="verifySecurityAnswer(this.value)" required maxlength="30">
+              <span id='security_msg'></span>
+            </div>
+
+
             <input type='hidden' name='JSEnabled' value='false'>
           </fieldset>
           <?php

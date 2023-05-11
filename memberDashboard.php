@@ -2,12 +2,17 @@
 
 <head>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+  <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
   <?php
   require("navbar_member.php");
+  if (session_status() !== PHP_SESSION_ACTIVE)
   session_start();
+
 
   ?>
   <br><br><br>
