@@ -1,4 +1,7 @@
 <?php
+ if (session_status() !== PHP_SESSION_ACTIVE)
+ session_start();
+ 
 require("project_connection.php");
 
 if (isset($_GET['removeUser'])) {
@@ -27,11 +30,11 @@ if (isset($_GET['removeUser'])) {
 require("navbar_admin.php");
 
 try {
-  $sql = "SELECT * FROM `users` where role= 'member'";
+  $sql = "SELECT * FROM `users` where role= 'member' ORDER BY userStatus";
   $result = $db->query($sql);
   $rows = $result->fetchAll();
 
-  $sql2 = "SELECT COUNT(*) FROM `users` where `userStatus` = 'active' AND role= 'member'";
+  $sql2 = "SELECT COUNT(*) FROM `users` where `userStatus` = 'active' AND role= 'member' ";
   $countResult = $db->query($sql2);
   $count = $countResult->fetchColumn();
 } catch (PDOException $e) {
@@ -120,7 +123,7 @@ try {
                     if ($row['userStatus'] == 'active')
                       echo "<input type='submit' name='removeUser' class='btn btn-outline-danger btn-sm' value='Remove'/>";
                     else
-                      echo "<input type='submit' name='reinstateUser' class='btn btn-outline-success btn-sm' value='Reinstate'/>";
+                      echo "<input type='submit' name='reinstateUser' class='btn btn-outline-warning btn-sm' value='Reinstate'/>";
                     ?>
                   </form>
                 </td>
@@ -136,6 +139,18 @@ try {
       </div>
 
     </div>
+    <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+    <br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
+                                                                                                                                                  if ($_SESSION['userType'] == "member")
+                                                                                                                                                    echo 'memberDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                    echo 'adminDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                    echo 'specialistDashboard.php';
+                                                                                                                                                } else
+                                                                                                                                                  echo 'homepage.php'; ?>">Return Home</a>
+                                                                                                                                                  </div>
   </div>
 </body>
 

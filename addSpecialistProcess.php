@@ -15,8 +15,43 @@ $postPassword = htmlspecialchars(stripslashes(strip_tags($userPassword)));
 $postPassword = md5($postPassword);
 
 require("project_connection.php");
+
+/* upload image */
+$profile_pic="default.jpg"; //default image name
+if (isset($_FILES["picfile"]["name"])) { //if statement to decide if new pic uploaded
+  if ((($_FILES["picfile"]["type"] == "image/gif")
+      || ($_FILES["picfile"]["type"] == "image/jpeg")
+      || ($_FILES["picfile"]["type"] == "image/png")
+      || ($_FILES["picfile"]["type"] == "image/jpg")
+      || ($_FILES["picfile"]["type"] == "image/pjpeg"))
+    && ($_FILES["picfile"]["size"] < 5000000)
+  ) {
+    if ($_FILES["picfile"]["error"] > 0) {
+      echo "Return Code:" . $_FILES["picfile"]["error"] . "<br>";
+      die();
+    } else {
+      echo "line 76";
+      $fdetails = explode(".", $_FILES["picfile"]["name"]);
+      $fext = end($fdetails);
+      $profile_pic = "pic" . $fdetails[0] . time() . uniqid(rand()) . ".$fext";  //file name
+      if (move_uploaded_file($_FILES["picfile"]["tmp_name"], "./uploadedimages/$profile_pic")) {
+        //Storage: uploadedimages/$fn;
+        //we didnt enter img details into db yet
+        $fileUploadFlag = true;
+        echo "line 84";
+      } else {
+        $fileUploadFlag = false;
+        echo "line88";
+        header('location:add_specialist_form.php?error=1');
+      }
+    }
+  } else {
+    echo "Invalid file type or bigger than 5MB";
+    header('location:add_specialist_form.php?error=1');
+  }
+} //end of new-file-upload if stmnt
+
 //entering specialist into users table
-$profile_pic = "default.jpg";
 try {
   $db->beginTransaction();
   $sql = "INSERT INTO `users`(`name`, `email`, `password`, `role`, `profile_pic` , `userStatus`) VALUES (:name,:email,:password,'specialist',:profile_pic , 'active')";

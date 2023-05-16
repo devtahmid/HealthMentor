@@ -23,24 +23,7 @@
   } else
     require('navbar_guest.php');
   ?>
-  <header>
-    <input type="checkbox" id="hamburger-input" class="burger-shower" />
-    <label id="hamburger-menu" for="hamburger-input">
-      <nav id="sidebar-menu">
 
-        <h3>Menu </h3>
-        <ul>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="Knowledge.html">knowledge</a></li>
-          <li><a href="homepage.html">Hompage</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-        <h4>Close</h4>
-
-    </label>
-    <div class="overlay"></div>
-  </header>
   <main>
     <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" style="width:150px;height:150px">

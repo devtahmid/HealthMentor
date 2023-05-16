@@ -1,4 +1,7 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE)
+  session_start();
+
 require("navbar_member.php");
 ?>
 <!DOCTYPE html>
@@ -59,20 +62,48 @@ require("navbar_member.php");
         </div>
         <?php
         require("project_connection.php");
-        $sql = "SELECT * FROM treatment_center";
+        $sql = "SELECT * FROM treatment_center WHERE status='active'";
         $result = $db->query($sql);
         $rows = $result->fetchAll();
 
-        foreach($rows as $row) {
+        foreach ($rows as $row) {
         ?>
-          <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:420px;">
-            <div class='mt-2'>
-              <b><?php $row['center_name']; ?></b>
+          <div class="my-3 p-2 border row border-black shadow-sm rounded overflow-y-auto" style="max-height:420px;">
+            <div class="col-md-9 order-2 order-md-1">
+              <div class='mt-2'>
+                <b><?php echo $row['center_name']; ?></b>
+              </div>
+              <div style="white-space: pre-line; margin-top:-30px;">
+
+                <?php echo $row['description']; ?>
+
+              </div>
+              <div><br> Treatment for:
+                <?php
+                $sqldiseases = "SELECT * FROM disease__treatmentcenter WHERE treat_center_id =" .  $row['treat_center_id'];
+                $resultdiseases = $db->query($sqldiseases);
+                $rowsdiseases = $resultdiseases->fetchAll();
+
+                $numberOfDisorders = count($rowsdiseases);
+                foreach ($rowsdiseases as $key => $rowdisease) {
+
+                  $sqlDiseaseName = "SELECT disease from diseases WHERE disease_id = :diseaseId";
+                  $resultDiseaseName = $db->prepare($sqlDiseaseName);
+                  $resultDiseaseName->execute(array(':diseaseId' => $rowdisease['disease_id']));
+
+                  $rowDiseaseName = $resultDiseaseName->fetch();
+                  if ($key == $numberOfDisorders - 1)
+                    echo $rowDiseaseName['disease'];
+                  else
+                    echo $rowDiseaseName['disease'] . ", ";
+                }
+
+
+                ?>
+              </div>
             </div>
-            <div style="white-space: pre-line; margin-top:-25px;">
-
-              <?php echo $row['description']; ?>
-
+            <div class="col-md-3 order-1 order-md-2 text-center">
+              <img src="uploadedimages/<?php echo $row['picture']; ?>" alt="center image" style="height: 200px; width:200px;">
             </div>
           </div>
         <?php
@@ -85,8 +116,20 @@ require("navbar_member.php");
 
     </div>
 
+    <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+      <br>
+      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
+                                                                                                                                                  if ($_SESSION['userType'] == "member")
+                                                                                                                                                    echo 'memberDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                    echo 'adminDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                    echo 'specialistDashboard.php';
+                                                                                                                                                } else
+                                                                                                                                                  echo 'homepage.php'; ?>">Return Home</a>
+    </div>
 
-
+  </div>
 </body>
 
 </html>

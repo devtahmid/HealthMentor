@@ -15,7 +15,7 @@ try {
   $stmt->bindParam(':message', $message);
   $stmt->execute();
   //make success and error modal displayed on support form
-  header('Location:contact.html');
+  header('Location:contact.php?msg=Message has been sent successfully');
 } catch (PDOException $e) {
   echo $e->getMessage();
 }

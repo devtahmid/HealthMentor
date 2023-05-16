@@ -1,5 +1,15 @@
 <?php
-require("navbar_member.php");
+if (session_status() !== PHP_SESSION_ACTIVE)
+session_start();
+if (isset($_SESSION['userType'])) {
+if ($_SESSION['userType'] == "member")
+    require('navbar_member.php');
+else if ($_SESSION['userType'] == "admin")
+    require('navbar_admin.php');
+else if ($_SESSION['userType'] == "specialist")
+    require('navbar_specialist.php');
+} else
+require('navbar_guest.php');
 
 ?>
 
@@ -110,7 +120,7 @@ require("navbar_member.php");
                 $treatments = explode(",", $treatments);
                 echo "<ol>";
                 foreach ($treatments as $treatment) {
-                  echo "<li>$treatment</li>";
+                  echo "<li>$treatment</li><br>";
                 }
                 echo "</ol>";
                 ?>

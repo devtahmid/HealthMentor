@@ -11,21 +11,44 @@
   <?php
   require("navbar_member.php");
   if (session_status() !== PHP_SESSION_ACTIVE)
-  session_start();
+    session_start();
 
 
   ?>
-  <br><br><br>
+
+  <nav class="navbar" style="background-color: #e3f2fd;">
+    <!-- <nav class="navbar" style="background-color: #90ccf4;"> -->
+    <div class="container-fluid">
+      <form class="d-flex mx-auto my-auto" role="search" onsubmit="return searchSelection(this)">
+        <input type="text" list="searchService" class="form-control me-2" placeholder="search" id='searchBar'>
+        <datalist id="searchService">
+
+          <option value='Self Checkup'>
+          <option value='My Health'>
+          <option value='Special Disorder Centers'>
+          <option value='Expert/Specialist'>
+          <option value='Emergency'>
+
+        </datalist>
+        <button class=" btn btn-outline-primary" type="submit">Go</button>
+      </form>
+    </div>
+  </nav>
+
+  <br><br>
+  <h1 style="text-align: center;">Self-Health Care</h1>
+  <br>
   <div class="mx-auto" style="width:150px; height:150px;">
-  <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
+    <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
   <div style="margin:auto; width:30%; height:50%; margin-top: 10%;">
-    <a class='btn btn-dark btn-lg d-block' href='self_checkup_form.php'>Self Checkup</a><br>
-    <a class='btn btn-dark btn-lg d-block' href="myHealth.php">My Health</a><br>
-    <a class='btn btn-dark btn-lg d-block' href="specialDisorderCenters.php">Special Disorder Centers</a><br>
-    <a class='btn btn-dark btn-lg d-block' href="memberChatHome.php">Expert/ Specialist</a><br>
-    <a class='btn btn-dark btn-lg d-block' href="emergency.php">Emergency</a><br>
+
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href='self_checkup_form.php'>Self Checkup</a><br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="myHealth.php">My Health</a><br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="specialDisorderCenters.php">Special Disorder Centers</a><br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="memberChatHome.php">Expert/ Specialist</a><br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="emergency.php">Emergency</a><br>
 
 
 
@@ -41,6 +64,31 @@
   }
 
   ?>
+
+  <script>
+    function searchSelection() {
+      var selection = document.getElementById("searchBar").value;
+console.log(selection)
+      selection = selection.trim().toLowerCase();
+
+      if ("self checkup".includes(selection))
+        window.location.href = "self_checkup_form.php";
+      else if ("my health".includes(selection))
+        window.location.href = "myHealth.php";
+      else if ("special disorder centers".includes(selection))
+        window.location.href = "specialDisorderCenters.php";
+      else if ("expert/specialist".includes(selection))
+        window.location.href = "memberChatHome.php";
+      else if ("emergency".includes(selection))
+        window.location.href = "emergency.php";
+      else
+        alert("Invalid Service");
+
+
+      return false;
+    }
+  </script>
+
 </body>
 
 </html>

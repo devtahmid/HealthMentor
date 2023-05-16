@@ -1,4 +1,7 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE)
+  session_start();
+
 require("project_connection.php");
 try {
   $sql = "SELECT * FROM symptoms";
@@ -111,8 +114,7 @@ require("navbar_admin.php");
 
     <!-- dropdown displaying all the results-->
 
-
-
+    
   </div>
 
   <script>
@@ -186,9 +188,14 @@ require("navbar_admin.php");
     }
 
     function checkSubmitability() {
-      if (document.getElementById('disorderName3').value.length > 0 && addedSymptomsList.length > 0 && document.getElementById('treatment3').value.length > 0 && document.getElementById('risk3').value.length > 0)
-        return true;
-      else
+      if (document.getElementById('disorderName3').value.length > 0 && addedSymptomsList.length > 0 && document.getElementById('treatment3').value.length > 0 && document.getElementById('risk3').value.length > 0) {
+        if (confirm("Are you sure you want to add this disorder?"))
+          return true;
+        else
+          return false;
+
+
+      } else
         return false;
     }
   </script>

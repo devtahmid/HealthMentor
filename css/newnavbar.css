@@ -63,11 +63,11 @@ display: none;
   font-family: 'Cabin', Sans-serif;
   background: linear-gradient(
     to bottom,
-    #4169E1, #4169E1 20%,
+    #007fff, #007fff 20%,
     white 20%, white 40%,
-    #4169E1 40%, #4169E1 60%,
+    #007fff 40%, #007fff 60%,
     white 60%, white 80%,
-    #4169E1 80%, #4169E1 100%
+    #007fff 80%, #007fff 100%
   );
 }
 

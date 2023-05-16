@@ -29,7 +29,7 @@ require("navbar_admin.php");
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Treatment Center</title>
+  <title>Add Special Disorder Center</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
@@ -46,7 +46,7 @@ require("navbar_admin.php");
     <h2 class="my-3 text-center">Add Treatment Center</h2>
 
 
-    <form class="row" id="myForm" method='get' action="addTreatmentCenterProcess.php" onsubmit="return checkSubmitability()">
+    <form class="row" id="myForm" action="addTreatmentCenterProcess.php" onsubmit="return checkSubmitability()" method='post' enctype="multipart/form-data">
 
       <div class="mb-3">
         <label for="centerName3" class="form-label">Center Name</label>
@@ -83,9 +83,21 @@ require("navbar_admin.php");
         </div>
       </div>
 
+      <div class="row mb-3">
+        <label for="picture3" class="col-form-label">Upload an image (image<=5MB) </label>
+            <div class="">
+              <input type="file" class="form-control" id="picture3" name='picfile'>
+            </div>
+      </div>
+
       <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add Treatment Center</button>
     </form>
 
+    <?php
+    if (isset($_GET['error']) && $_GET['error'] == 1) {
+      echo "<script> alert('File could not be uploaded'); </script>";
+    }
+    ?>
 
   </div>
 
@@ -161,9 +173,12 @@ require("navbar_admin.php");
     }
 
     function checkSubmitability() {
-      if (document.getElementById('centerName3').value.length > 0 && addedDisordersList.length > 0 && document.getElementById('moreDetails3').value.length > 0)
-        return true;
-      else
+      if (document.getElementById('centerName3').value.length > 0 && addedDisordersList.length > 0 && document.getElementById('moreDetails3').value.length > 0) {
+        if (confirm("Are you sure you want to add this Disorder Center?"))
+          return true;
+        else
+          return false;
+      } else
         return false;
     }
   </script>

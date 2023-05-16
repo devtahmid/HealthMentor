@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 11, 2023 at 06:12 AM
+-- Generation Time: May 17, 2023 at 12:06 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,12 +41,13 @@ CREATE TABLE `checkup_history` (
 INSERT INTO `checkup_history` (`check_hist_id`, `user_id`, `date`, `result_in_json`) VALUES
 (8, 2, '2023-05-07', '{\"1\":{\"totalSymptoms\":6,\"percentage\":50},\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":40},\"6\":{\"totalSymptoms\":6,\"percentage\":50},\"10\":{\"totalSymptoms\":3,\"percentage\":33.3299999999999982946974341757595539093017578125},\"9\":{\"totalSymptoms\":1,\"percentage\":100}}'),
 (9, 2, '2023-05-08', '{\"1\":{\"totalSymptoms\":6,\"percentage\":50},\"4\":{\"totalSymptoms\":4,\"percentage\":50}}'),
-(10, 2, '2023-05-09', '{\"1\":{\"totalSymptoms\":6,\"percentage\":33.3299999999999982946974341757595539093017578125},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
-(11, 2, '2023-05-09', '{\"1\":{\"totalSymptoms\":6,\"percentage\":33.3299999999999982946974341757595539093017578125},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
 (12, 2, '2023-05-09', '{\"1\":{\"totalSymptoms\":6,\"percentage\":33.3299999999999982946974341757595539093017578125},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
 (13, 2, '2023-05-09', '{\"1\":{\"totalSymptoms\":6,\"percentage\":33.3299999999999982946974341757595539093017578125},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
-(14, 2, '2023-05-09', '{\"1\":{\"totalSymptoms\":6,\"percentage\":33.3299999999999982946974341757595539093017578125},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
-(15, 2, '2023-05-09', '{\"1\":{\"totalSymptoms\":6,\"percentage\":33.3299999999999982946974341757595539093017578125},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}');
+(17, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
+(18, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
+(19, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
+(20, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
+(21, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}');
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,8 @@ CREATE TABLE `customer_support_messages` (
 INSERT INTO `customer_support_messages` (`c_id`, `dateTime`, `name`, `email`, `phone`, `message`, `status`) VALUES
 (3, '2023-05-09 21:41:26', 'Hamza', 'hamza@pm.com', '32323434', 'Hi, I would like to have a meeting. Please mail me or call me anytime', 'unread'),
 (4, '2023-05-09 21:55:00', 'Zahra', 'zahra@pm.com', '33455678', 'Really like what you have going on in here!\r\nCould you please let me know how I can contact you personally?', 'read'),
-(5, '2023-05-09 21:57:31', 'Muhammad', 'muhammad@pm.com', '17890987', 'Hi , I would like to book an appointment and I am feeling lost. Could you please help me?', 'read');
+(5, '2023-05-09 21:57:31', 'Muhammad', 'muhammad@pm.com', '17890987', 'Hi , I would like to book an appointment and I am feeling lost. Could you please help me?', 'read'),
+(6, '2023-05-15 21:12:54', 'Sherlock Holmes', 'notsosimplecase@221bmail.com', '39876543', 'I have a mystery ailment wit strange symptoms. get in touch asap!', 'unread');
 
 -- --------------------------------------------------------
 
@@ -91,7 +93,7 @@ CREATE TABLE `diseases` (
 --
 
 INSERT INTO `diseases` (`disease_id`, `disease`, `status`, `riskType`) VALUES
-(1, 'ADHD (attention deficit hyperactivity disorder)', 'active', 'Medium risk'),
+(1, 'ADHD (attention deficit hyperactivity disorder)', 'inactive', 'Medium risk'),
 (4, 'Autism', 'active', 'High risk'),
 (5, 'Alzheimer\'s disorder', 'active', 'High risk'),
 (6, 'Anxiety disorders', 'active', 'Medium risk'),
@@ -203,7 +205,12 @@ INSERT INTO `disease__treatmentcenter` (`dis_treatcenter_id`, `disease_id`, `tre
 (11, 15, 5),
 (12, 18, 5),
 (14, 21, 7),
-(15, 19, 8);
+(15, 19, 8),
+(16, 17, 6),
+(17, 11, 6),
+(18, 13, 6),
+(19, 4, 9),
+(20, 21, 9);
 
 -- --------------------------------------------------------
 
@@ -266,7 +273,9 @@ INSERT INTO `messages` (`message_id`, `dateTime`, `fromId`, `toId`, `message`) V
 (30, '2023-05-11 04:49:43', 15, 2, 'test'),
 (31, '2023-05-11 04:49:45', 15, 2, 'test'),
 (32, '2023-05-11 04:49:47', 15, 2, 'test'),
-(33, '2023-05-11 04:49:49', 15, 2, '2222');
+(33, '2023-05-11 04:49:49', 15, 2, '2222'),
+(34, '2023-05-13 22:09:13', 2, 16, 'hello miss lori'),
+(35, '2023-05-16 20:19:24', 2, 24, 'hi');
 
 -- --------------------------------------------------------
 
@@ -308,7 +317,11 @@ INSERT INTO `specialists-expertise` (`rowid`, `specialistId`, `expertise`) VALUE
 (21, 17, 'Developmental Language Disorder'),
 (22, 17, 'Language/Learning Disabilities'),
 (23, 17, 'Speech Sound Disorders'),
-(24, 17, 'Literacy: Reading/Dyslexia');
+(24, 17, 'Literacy: Reading/Dyslexia'),
+(26, 24, 'ttesting'),
+(27, 24, 'testing2'),
+(28, 25, 'test two'),
+(29, 26, 'test test three');
 
 -- --------------------------------------------------------
 
@@ -421,20 +434,22 @@ CREATE TABLE `treatment_center` (
   `treat_center_id` int(11) NOT NULL,
   `center_name` varchar(200) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `status` varchar(10) NOT NULL DEFAULT 'active'
+  `status` varchar(10) NOT NULL DEFAULT 'active',
+  `picture` varchar(250) NOT NULL DEFAULT 'defaultTreatmentCenter.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `treatment_center`
 --
 
-INSERT INTO `treatment_center` (`treat_center_id`, `center_name`, `description`, `status`) VALUES
-(2, 'REACH Behavior and Development Center | ABA Therapy, Speech Therapy, Occupational Therapy, Autism, ADHD, Child Development Center in Bahrain', 'Located in: Nakheel Center\r\nAddress: Nakheel Centre – 2nd Floor, Building 789, Road 1322, Saar\r\nAreas served: Bahrain.\r\nPhone: 3900 6065\r\nAppointments: reachabatherapy.com', 'active'),
-(4, 'Bahrain Specialist Hospital', 'Address: Building 2743, Road No 2447, Block 324 Juffair, 324\r\nHours: Open 24 hours\r\nPhone: 1781 2222', 'active'),
-(5, 'Royal Bahrain Hospital', '\r\nPrivate hospital in Manama\r\nAddress: Building 119, Block 329 King Abdul Aziz Avenue, Salmaniya\r\nHours: Open 24 hours\r\nPhone: 1724 6800', 'active'),
-(6, 'Britus International School - Special Education', 'Special education school in Bu Quwah\r\nAddress: Bldg 2312, Road 5755, Block 457, Bu Quwah\r\nPhone: 1656 8120', 'active'),
-(7, 'The RIA Institute', 'Education center in Manama\r\nAddress: villa 2749 Rd No 2771, Manama\r\nPhone: 1771 6871', 'active'),
-(8, 'Bahrain Institute for Special Education', 'Learning center in Manama\r\nAddress: 6HG4+R7H, Manama\r\nPhone: 1755 6613', 'active');
+INSERT INTO `treatment_center` (`treat_center_id`, `center_name`, `description`, `status`, `picture`) VALUES
+(2, 'REACH Behavior and Development Center | ABA Therapy, Speech Therapy, Occupational Therapy, Autism, ADHD, Child Development Center in Bahrain', 'Located in: Nakheel Center\r\nAddress: Nakheel Centre – 2nd Floor, Building 789, Road 1322, Saar\r\nAreas served: Bahrain.\r\nPhone: 3900 6065\r\nAppointments: reachabatherapy.com', 'active', 'nakheel.jpg'),
+(4, 'Bahrain Specialist Hospital', 'Address: Building 2743, Road No 2447, Block 324 Juffair, 324\r\nHours: Open 24 hours\r\nPhone: 1781 2222', 'active', 'bahrainspecialist.jpg'),
+(5, 'Royal Bahrain Hospital', '\r\nPrivate hospital in Manama\r\nAddress: Building 119, Block 329 King Abdul Aziz Avenue, Salmaniya\r\nHours: Open 24 hours\r\nPhone: 1724 6800', 'active', 'royalbahrain.jpeg'),
+(6, 'Britus International School - Special Education', 'Special education school in Bu Quwah\r\nAddress: Bldg 2312, Road 5755, Block 457, Bu Quwah\r\nPhone: 1656 8120', 'active', 'britus.jpeg'),
+(7, 'The RIA Institute', 'Education center in Manama\r\nAddress: villa 2749 Rd No 2771, Manama\r\nPhone: 1771 6871', 'active', 'ria.jpg'),
+(8, 'Bahrain Institute for Special Education', 'Learning center in Manama\r\nAddress: 6HG4+R7H, Manama\r\nPhone: 1755 6613', 'active', 'bahraininstitutespecial.jpg'),
+(9, 'test treatment center', 'more details 1 ', 'inactive', 'picscenary116842606025586997326463c6faba17f.jpg');
 
 -- --------------------------------------------------------
 
@@ -460,15 +475,15 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `profile_pic`, `
 (1, 'Admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'default.jpg', 'active'),
 (2, 'member one', 'member1@gmail.com', 'c7764cfed23c5ca3bb393308a0da2306', 'member', 'default.jpg', 'active'),
 (3, 'aa', 'aaa@aa.com', '7c3d596ed03ab9116c547b0eb678b247', 'member', 'default.jpg', 'inactive'),
-(4, 'bb', 'bb@b.com', '7229e3243ac72f445866a4f21f1b3508', 'member', 'default.jpg', 'inactive'),
-(5, 'c', 'cc@c.com', 'c1f68ec06b490b3ecb4066b1b13a9ee9', 'member', 'default.jpg', 'inactive'),
-(6, 'dd', 'd@d.com', '980ac217c6b51e7dc41040bec1edfec8', 'member', 'default.jpg', 'inactive'),
 (14, 'specialis three', 'specialist3@pm.com', 'b4a7495aa0ec7fc2caa321ba632c36ef', 'specialist', 'default.jpg', 'inactive'),
 (15, 'Karen Clapper', 'karenclapper@pm.com', 'f0a409766608747e98d81cf932c48ea0', 'specialist', 'pickaren16837770081131057335645c65f07b323.jpg', 'active'),
 (16, 'Lori M. Allen', 'lori.allen@bmcjax.com', 'cd4a3709f9397a0b0e4d25057c18d9c4', 'specialist', 'piclori16837772911067615529645c670b27aec.jpg', 'active'),
 (17, 'Alejandro E. Brice', 'aebrice@usf.edu', '3ae70dc637b30bd7729ed1c87ec2a762', 'specialist', 'picalejandro1683777761791651385645c68e15d785.jpg', 'active'),
 (18, 'ali', 'ali123@gmail.com', '984d8144fa08bfc637d2825463e184fa', 'member', 'default.jpg', 'active'),
-(22, 'member four', 'member4@gmail.com', 'a998123003066ac9fa7de4b100e7c4bc', 'member', 'default.jpg', 'active');
+(22, 'member four', 'member4@gmail.com', 'a998123003066ac9fa7de4b100e7c4bc', 'member', 'default.jpg', 'active'),
+(24, 'test specialist ', 'testspecialist@mail.com', '14a6da108721595b5da527b32a2d0f65', 'specialist', 'default.jpg', 'inactive'),
+(25, 'test two specialist', 'testtwo@specialist.com', '3be0005a2ce3d8cd56de93c6ee3cdf22', 'specialist', 'default.jpg', 'inactive'),
+(26, 'test three', 'testtest3@gmail.com', 'bb86c291743c3edcf6c76e4ff69f974f', 'specialist', 'piccat16842634862862332786463d23e8370f.jpg', 'inactive');
 
 --
 -- Indexes for dumped tables
@@ -563,31 +578,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `checkup_history`
 --
 ALTER TABLE `checkup_history`
-  MODIFY `check_hist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `check_hist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `customer_support_messages`
 --
 ALTER TABLE `customer_support_messages`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `diseases`
 --
 ALTER TABLE `diseases`
-  MODIFY `disease_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `disease_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `disease_symptoms`
 --
 ALTER TABLE `disease_symptoms`
-  MODIFY `dis_symp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `dis_symp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `disease__treatmentcenter`
 --
 ALTER TABLE `disease__treatmentcenter`
-  MODIFY `dis_treatcenter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `dis_treatcenter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `forgot_password_answers`
@@ -599,37 +614,37 @@ ALTER TABLE `forgot_password_answers`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `specialists-expertise`
 --
 ALTER TABLE `specialists-expertise`
-  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `symptoms`
 --
 ALTER TABLE `symptoms`
-  MODIFY `symptom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `symptom_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `treatments`
 --
 ALTER TABLE `treatments`
-  MODIFY `treatment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `treatment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `treatment_center`
 --
 ALTER TABLE `treatment_center`
-  MODIFY `treat_center_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `treat_center_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
@@ -647,7 +662,7 @@ ALTER TABLE `disease_symptoms`
 --
 ALTER TABLE `disease__treatmentcenter`
   ADD CONSTRAINT `disease_treatcenter_fk` FOREIGN KEY (`disease_id`) REFERENCES `diseases` (`disease_id`),
-  ADD CONSTRAINT `treatcenter_fk` FOREIGN KEY (`treat_center_id`) REFERENCES `treatments` (`treatment_id`);
+  ADD CONSTRAINT `treatcenter_fk` FOREIGN KEY (`treat_center_id`) REFERENCES `treatment_center` (`treat_center_id`);
 
 --
 -- Constraints for table `forgot_password_answers`

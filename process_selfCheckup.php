@@ -13,7 +13,7 @@ try {
   $sql = "SELECT * FROM disease_symptoms WHERE symptom_id = :symptom_id";
   $preparestatement1 = $db->prepare($sql);
 
-  $sql2 = "SELECT * FROM diseases WHERE disease_id = :disease_id";
+  $sql2 = "SELECT * FROM diseases WHERE disease_id = :disease_id AND status='active'";
 
   $symptomsAndTheirDiseases = [];
   $index = 0;

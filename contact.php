@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -48,6 +48,11 @@
             <input type="email" name="email" placeholder="Email *" required />
             <input type="phone" name="phone" placeholder="Phone *" required />
             <textarea rows="4" name="message" placeholder="Message *" maxlength="499" required></textarea>
+            <?php
+            if (isset($_GET['msg'])) {
+              echo "<p style='color:green; font-size:0.8rem;'>".$_GET['msg']."</p>";
+            }
+            ?>
             <button>Submit</button>
           </form>
         </div>

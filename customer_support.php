@@ -1,4 +1,7 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE)
+  session_start();
+
 require("project_connection.php");
 
 if (isset($_GET['markAsRead'])) {
@@ -26,7 +29,7 @@ if (isset($_GET['markAsRead'])) {
 require("navbar_admin.php");
 
 try {
-  $sql = "SELECT * FROM `customer_support_messages` ORDER BY status DESC, dateTime ASC";
+  $sql = "SELECT * FROM `customer_support_messages` ORDER BY status DESC, dateTime DESC";
   $result = $db->query($sql);
   $rows = $result->fetchAll();
 
@@ -99,6 +102,7 @@ try {
         <table class="table table-bordered table-sm">
           <thead>
             <tr>
+              <th scope="col">Date and Time</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
@@ -112,6 +116,7 @@ try {
             foreach ($rows as $row) {
             ?>
               <tr>
+                <td><?php echo $row['dateTime']; ?></td>
                 <td><?php echo $row['name']; ?></td>
                 <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a></td>
                 <td><?php echo $row['phone']; ?></td>
@@ -138,6 +143,18 @@ try {
         </table>
       </div>
 
+    </div>
+    <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+      <br>
+      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
+                                                                                                                                                  if ($_SESSION['userType'] == "member")
+                                                                                                                                                    echo 'memberDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                    echo 'adminDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                    echo 'specialistDashboard.php';
+                                                                                                                                                } else
+                                                                                                                                                  echo 'homepage.php'; ?>">Return Home</a>
     </div>
   </div>
 </body>

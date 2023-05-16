@@ -1,7 +1,10 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE)
+  session_start();
+
 require("project_connection.php");
 try {
-  $sql = "SELECT * FROM symptoms WHERE symptom_id IN (SELECT symptom_id FROM disease_symptoms)";
+  $sql = "SELECT * FROM symptoms WHERE symptom_id IN (SELECT symptom_id FROM disease_symptoms WHERE disease_id IN (SELECT disease_id FROM diseases WHERE status = 'active'))";
   $result = $db->query($sql);
   $rows = $result->fetchAll();
   $db = null;
@@ -85,7 +88,7 @@ if (isset($_SESSION['userType'])) {
     <h2 class="my-3 text-center">Self Checkup Service:</h2>
 
     <div class="row"><!-- includes selected symptoms -->
-      <div class="col-md-8" style="height:55vh"> <!-- search + list -->
+      <div class="col-md-8" style="height:45vh"> <!-- search + list -->
         <div class="row shadow-sm rounded"> <!-- only search -->
 
           <label for="searchSymptom" class="col-sm-3 col-md-5 col-form-label">Search Symptoms</label>
@@ -129,8 +132,22 @@ if (isset($_SESSION['userType'])) {
 
       <form action='process_selfCheckup.php'>
         <input type='hidden' name="addedSymptomsList" value='' id='hiddenData'>
-        <button type="submit" class="btn btn-primary" id='submitButton' disabled>Submit</button>
+        <button type="submit" class="btn btn-primary " id='submitButton' disabled>Submit</button>
       </form>
+      <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+        <br>
+        <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (session_status() !== PHP_SESSION_ACTIVE)
+                                                                                                                                                    session_start();
+                                                                                                                                                  if (isset($_SESSION['userType'])) {
+                                                                                                                                                    if ($_SESSION['userType'] == "member")
+                                                                                                                                                      echo 'memberDashboard.php';
+                                                                                                                                                    else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                      echo 'adminDashboard.php';
+                                                                                                                                                    else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                      echo 'specialistDashboard.php';
+                                                                                                                                                  } else
+                                                                                                                                                    echo 'homepage.php'; ?>">Return Home</a>
+      </div>
     </div>
 
     <script>

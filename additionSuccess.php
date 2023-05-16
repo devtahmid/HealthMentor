@@ -11,11 +11,17 @@
 
 <body>
   <?php
+  if (session_status() !== PHP_SESSION_ACTIVE)
   session_start();
-  if ($_SESSION['userType'] == "admin")
-    require("navbar_admin.php");
-  else
-    require("navbar_member.php");
+if (isset($_SESSION['userType'])) {
+  if ($_SESSION['userType'] == "member")
+      require('navbar_member.php');
+  else if ($_SESSION['userType'] == "admin")
+      require('navbar_admin.php');
+  else if ($_SESSION['userType'] == "specialist")
+      require('navbar_specialist.php');
+} else
+  require('navbar_guest.php');
 
   ?>
   <div class="container-md" style="margin-top: 130px;">
@@ -36,6 +42,19 @@
     </div>
     <h2 class="container d-flex justify-content-center align-items-center" style="text-transform: none;"><?php echo $_GET['msg']; ?>
     </h2>
+    <div style="width:30%; margin-left:auto; margin-right:auto;">
+      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (session_status() !== PHP_SESSION_ACTIVE)
+                                                                                                                                                  session_start();
+                                                                                                                                                if (isset($_SESSION['userType'])) {
+                                                                                                                                                  if ($_SESSION['userType'] == "member")
+                                                                                                                                                    echo 'memberDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                    echo 'adminDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                    echo 'specialistDashboard.php';
+                                                                                                                                                } else
+                                                                                                                                                  echo 'homepage.php'; ?>">Return Home</a><br>
+    </div>
   </div>
 </body>
 

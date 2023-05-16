@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <title>HOMEPAGE</title>
 
@@ -24,11 +25,32 @@
     } else
         require('navbar_guest.php');
     ?>
+
+    <nav class="navbar" style="background-color: #e3f2fd;">
+        <!-- <nav class="navbar" style="background-color: #90ccf4;"> -->
+        <div class="container-fluid">
+            <form class="d-flex mx-auto" role="search" onsubmit="return searchSelection(this)">
+                <input type="text" list="searchService" class="form-control me-2" placeholder="search" id='searchBar'>
+                <datalist id="searchService">
+
+                    <option value='Self Checkup'>
+                    <option value='Knowledge Center'>
+                    <option value='Games'>
+                    <option value='Emergency'>
+
+                </datalist>
+                <button class="btn btn-outline-primary" type="submit">Go</button>
+            </form>
+        </div>
+    </nav>
+
     <main>
+        <br>
+        <h1>AbleMind</h1>
         <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
         <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" style="width:140px;height:140px">
         </lord-icon>
-        <h1>AbleMind</h1>
+
     </main>
     <article>
         <!-- partial:index.partial.html -->
@@ -108,30 +130,57 @@
         </div>
         <!-- partial -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-        <script src="./c.js"></script>
+        <script src="js/c.js"></script>
 
     </article>
+    <br>
     <div class="services">
         <a href="login.php">
             <h1>Services:</h1>
         </a>
     </div>
-    <footer>
-        <div class="first">
-            <a href="self_checkup_form.php">
-                <button class="custom-btn btn-12"><span>Click!</span><span>Self Checkup</span></button></a>
-        </div>
-        <div class="second">
-            <a href="myHealth.php">
-                <button class="custom-btn btn-13"><span>Click!</span><span>My Health</span></button></a>
-        </div>
-        <div class="forth">
-            <button class="custom-btn btn-15"><span>Click!</span><span>Games</span></button>
-        </div>
-    </footer>
 
 
 
+    <div style="width:30%; margin-left:auto; margin-right:auto;">
+
+        <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="self_checkup_form.php">Self Checkup</a><br>
+
+        <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="specialDisorderCenters.php">Special Disorder Centers</a><br>
+
+        <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="games.php">Games</a><br>
+
+        <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="emergency.php">Emergency</a><br>
+
+
+
+
+    </div>
+
+
+    <script>
+
+
+        function searchSelection() {
+            var selection = document.getElementById("searchBar").value;
+
+            selection = selection.trim().toLowerCase();
+
+            if ("self checkup".includes(selection))
+                window.location.href = "self_checkup_form.php";
+            else if ("knowledge center".includes(selection))
+                window.location.href = "Knowledge.php";
+            else if ("games".includes(selection))
+                window.location.href = "games.php";
+            else if ("emergency".includes(selection))
+                window.location.href = "emergency.php";
+            else
+                alert("Invalid Service");
+
+            return false;
+        }
+    </script>
 </body>
+
 
 </html>

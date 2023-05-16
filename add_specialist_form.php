@@ -29,7 +29,7 @@ require("navbar_admin.php");
     <h2 class="my-3 text-center">Add Specialist</h2>
 
 
-    <form class="row" id="myForm" method='post' action="addSpecialistProcess.php" onsubmit="return checkSubmitability()">
+    <form class="row" id="myForm" method='post' action="addSpecialistProcess.php" onsubmit="return checkSubmitability()" enctype="multipart/form-data">
 
       <div class="mb-3">
         <label for="centerName3" class="form-label">Specialist Name</label>
@@ -49,7 +49,7 @@ require("navbar_admin.php");
       </div>
 
 
-      <div class="row mb-4" id="chooseSymptom">
+      <div class="row mb-3" id="chooseSymptom">
         <label class="form-label" for='selectSymptom'>Enter Areas of Expertise</label>
         <div class="col-9 ">
           <input type="text" class="form-control" id="selectSymptom" maxlength="150">
@@ -57,10 +57,21 @@ require("navbar_admin.php");
         <a class='btn btn-outline-success btn-sm col-3 fw-bolder' onclick="addSymptom('selectSymptom')">+</a>
       </div>
 
+      <div class="row mb-4">
+        <label for="picture3" class="col-form-label">Upload specialist image (image<=5MB) </label>
+            <div class="">
+              <input type="file" class="form-control" id="picture3" name='picfile'>
+            </div>
+      </div>
+
       <!-- disorders added by user will appear below -->
 
       <input type='hidden' name='addedDisordersList' value='' id='hiddenData' />
-
+      <?php
+      if (isset($_GET['error']) && $_GET['error'] == 1) {
+        echo "<script> alert('File could not be uploaded'); </script>";
+      }
+      ?>
       <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add Specialist</button>
     </form>
 
@@ -133,9 +144,12 @@ require("navbar_admin.php");
     }
 
     function checkSubmitability() {
-      if (document.getElementById('centerName3').value.length > 0 && document.getElementById('userEmail3').value.length > 0 && document.getElementById('userPassword').value.length > 0 && addedDisordersList.length > 0)
-        return true;
-      else
+      if (document.getElementById('centerName3').value.length > 0 && document.getElementById('userEmail3').value.length > 0 && document.getElementById('userPassword').value.length > 0 && addedDisordersList.length > 0) {
+        if (confirm("Are you sure you want to add this specialist?"))
+          return true;
+        else
+          return false;
+      } else
         return false;
     }
   </script>

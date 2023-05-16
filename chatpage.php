@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['userId']))
+  header('Location:login.php');
+
+
 $fromId = $_SESSION['userId'];
 $toId = $_GET['toId'];
 require('project_connection.php');
@@ -44,8 +49,8 @@ else if ($_SESSION['userType'] == "specialist")
 </head>
 
 <body style='width:100vw;'>
-  <div class="container-md" style="margin-bottom:32px;  position:relative; bottom:2px; overflow-y:auto;">
-    <div class="row border border-3 border-black">
+  <div class="container-md border border-3 border-black" style="margin-bottom:32px;  position:relative; bottom:2px; height:100vh; overflow-y:auto;">
+    <div class="row ">
       <?php
 
       foreach ($allMessages as $message) {
