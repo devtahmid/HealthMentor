@@ -1,6 +1,8 @@
 <html>
 
 <head>
+  <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
   <script>
     Weglot.initialize({
@@ -24,7 +26,7 @@
     require('navbar_guest.php');
   ?>
   <div class="container-md" style="margin-top: 100px;">
-    <h2 class="text-center">Are you in an emergency? Press the button below and help will reach you soon</h2>
+    <div class="fw-bolder fs-2 text-center">Are you in an emergency? Press the button below and help will reach you soon</div>
 
     <a href='tel:999' style='display:block; margin-top:150;'>
       <div style='height:100px; width:100px; display:block; margin:auto;'><img src="assets/call1.png" alt='999' style='max-width:100%'></div>

@@ -82,55 +82,55 @@ if (isset($_SESSION['userType'])) {
     </lord-icon>
   </div>
   <div class="container-md" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Check-up History:</h2>
-    <div class="row ">
-      <div class="">
-        <div class="row shadow rounded">
+    <div class="rounded-4 shadow bg-white p-3">
+      <h2 class="my-3 text-center">Check-up History:</h2>
+      <div class="row ">
 
-          <?php
-          require('project_connection.php');
-          if (session_status() !== PHP_SESSION_ACTIVE)
-            session_start();
-          $userId = $_SESSION['userId'];
-          $sql = "SELECT * FROM checkup_history WHERE user_id = '$userId' ORDER BY date DESC";
-          $result = $db->query($sql);
-          $rows = $result->fetchAll();
-          ?>
-          <table class="table table-light table-bordered border-black table-striped">
-            <thead>
-              <tr>
-                <th scope='col'>Date Checked</th>
-                <th scope='col'>Result</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              $sqlDisorderName = "SELECT disease FROM diseases WHERE disease_id = :disease_id";
-              $preparedstmt = $db->prepare($sqlDisorderName);
 
-              foreach ($rows as $row) {
-                $jsonResult = json_decode($row['result_in_json'], true);
-                echo "<tr>";
-                echo "<td >" . $row['date'] . "</td>";
-                $resultCleaned = "";
-                foreach ($jsonResult as $key => $row) {
-                  $preparedstmt->bindParam(':disease_id', $key);
-                  $preparedstmt->execute();
-                  $disorderName = $preparedstmt->fetch();
-                  $resultCleaned .= $disorderName['disease'] . ":" . $jsonResult[$key]['percentage'] . "% <br>";
-                }
-                $resultCleaned = rtrim($resultCleaned, " ,");
-                echo "<td>" . $resultCleaned . "</td>";
-                echo "</tr>";
+
+        <?php
+        require('project_connection.php');
+        if (session_status() !== PHP_SESSION_ACTIVE)
+          session_start();
+        $userId = $_SESSION['userId'];
+        $sql = "SELECT * FROM checkup_history WHERE user_id = '$userId' ORDER BY date DESC";
+        $result = $db->query($sql);
+        $rows = $result->fetchAll();
+        ?>
+        <table class="table table-light table-bordered border-black table-striped">
+          <thead>
+            <tr>
+              <th scope='col'>Date Checked</th>
+              <th scope='col'>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $sqlDisorderName = "SELECT disease FROM diseases WHERE disease_id = :disease_id";
+            $preparedstmt = $db->prepare($sqlDisorderName);
+
+            foreach ($rows as $row) {
+              $jsonResult = json_decode($row['result_in_json'], true);
+              echo "<tr>";
+              echo "<td >" . $row['date'] . "</td>";
+              $resultCleaned = "";
+              foreach ($jsonResult as $key => $row) {
+                $preparedstmt->bindParam(':disease_id', $key);
+                $preparedstmt->execute();
+                $disorderName = $preparedstmt->fetch();
+                $resultCleaned .= $disorderName['disease'] . ":" . $jsonResult[$key]['percentage'] . "% <br>";
               }
-              ?>
-            </tbody>
-          </table>
-
-        </div>
-
+              $resultCleaned = rtrim($resultCleaned, " ,");
+              echo "<td>" . $resultCleaned . "</td>";
+              echo "</tr>";
+            }
+            ?>
+          </tbody>
+        </table>
 
       </div>
+
+
 
 
     </div>

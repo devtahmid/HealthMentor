@@ -1,4 +1,6 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE)
+session_start();
 
 //var_dump($_GET);
 $treatCenterIds = json_decode($_GET['treatmentIds'], true);
@@ -58,59 +60,73 @@ require("navbar_member.php");
     </lord-icon>
   </div>
   <div class="container-sm" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Special Disorder Center:</h2>
-    <div class="row ">
-      <div class="">
-        <div class="row shadow rounded">
+    <div class="rounded-4 shadow bg-white py-3">
+      <h2 class="my-3 text-center">Special Disorder Center:</h2>
+      <div class="row ">
+        <div class="">
+          <div class="row shadow rounded">
 
 
 
-        </div>
-        <?php
+          </div>
+          <?php
 
-        if (count($treatCenterIds) == 0) {
-          echo "<div class='my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto' style='max-height:420px;'>
+          if (count($treatCenterIds) == 0) {
+            echo "<div class='my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto' style='max-height:420px;'>
                   <div class='mt-2'>
                     None found
                   </div>
                   <div style='white-space: pre-line;'>
                   </div>
                 </div>";
-        }
+          }
 
-        require("project_connection.php");
-        $sql = "SELECT * FROM treatment_center WHERE treat_center_id = :treat_center_id AND status='active'";
-        $preparestatement = $db->prepare($sql);
-        foreach ($treatCenterIds as $treat_center_id) {
-          $preparestatement->bindParam(':treat_center_id', $treat_center_id);
-          $preparestatement->execute();
-          $treatmentRow = $preparestatement->fetch();
+          require("project_connection.php");
+          $sql = "SELECT * FROM treatment_center WHERE treat_center_id = :treat_center_id AND status='active'";
+          $preparestatement = $db->prepare($sql);
+          foreach ($treatCenterIds as $treat_center_id) {
+            $preparestatement->bindParam(':treat_center_id', $treat_center_id);
+            $preparestatement->execute();
+            $treatmentRow = $preparestatement->fetch();
 
-          if (!isset($treatmentRow['center_name']))
-            continue;
-        ?>
-          <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:430px;">
-            <div class='mt-2'>
-              <b><?php echo $treatmentRow['center_name']; ?></b>
+            if (!isset($treatmentRow['center_name']))
+              continue;
+          ?>
+            <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:430px;">
+              <div class='mt-2'>
+                <b><?php echo $treatmentRow['center_name']; ?></b>
+              </div>
+              <div style="white-space: pre-line; margin-top:-25px;">
+
+                <?php
+                echo $treatmentRow['description'];
+
+                ?>
+
+              </div>
             </div>
-            <div style="white-space: pre-line; margin-top:-25px;">
+          <?php
+          }
 
-              <?php
-              echo $treatmentRow['description'];
-
-              ?>
-
-            </div>
-          </div>
-        <?php
-        }
-
-        ?>
+          ?>
+        </div>
       </div>
-
-
-
     </div>
+
+    <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+      <br>
+      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
+                                                                                                                                                  if ($_SESSION['userType'] == "member")
+                                                                                                                                                    echo 'memberDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                    echo 'adminDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                    echo 'specialistDashboard.php';
+                                                                                                                                                } else
+                                                                                                                                                  echo 'homepage.php'; ?>">Return Home</a>
+    </div>
+
+  </div>
 
 
 

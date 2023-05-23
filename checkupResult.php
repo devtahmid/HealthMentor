@@ -65,7 +65,7 @@ if (isset($_SESSION['userType'])) {
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
-  <div class="container-lg rounded-4 shadow bg-white" style="margin-top: 30px;">
+  <div class="container-lg rounded-4 shadow bg-white py-2" style="margin-top: 30px;">
 
     <h2 class="my-3 text-center">Self Checkup Service:</h2>
 

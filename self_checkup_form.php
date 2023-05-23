@@ -90,56 +90,58 @@ if (isset($_SESSION['userType'])) {
     </lord-icon>
   </div>
   <div class="container-lg" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Self Checkup Service:</h2>
+    <div class="rounded-4 shadow bg-white p-4">
+      <h2 class="my-3 text-center">Self Checkup Service:</h2>
 
-    <div class="row border  border-black shadow rounded bg-white"><!-- includes selected symptoms -->
-      <div class="col-md-8" style="height:45vh"> <!-- search + list -->
-        <div class="row shadow-sm rounded"> <!-- only search -->
+      <div class="row border  border-black shadow rounded bg-white"><!-- includes selected symptoms -->
+        <div class="col-md-8" style="height:45vh"> <!-- search + list -->
+          <div class="row shadow-sm rounded"> <!-- only search -->
 
-          <label for="searchSymptom" class="col-sm-3 col-md-5 col-form-label">Search Symptoms</label>
+            <label for="searchSymptom" class="col-sm-3 col-md-5 col-form-label">Search Symptoms</label>
 
-          <input type="text" list="disorderSearch" id='searchSymptom' class="form-control col-sm-9 col-md-7" onchange="searchSelection(event)">
-          <datalist id="disorderSearch">
+            <input type="text" list="disorderSearch" id='searchSymptom' class="form-control col-sm-9 col-md-7" onchange="searchSelection(event)">
+            <datalist id="disorderSearch">
+              <?php
+              foreach ($rows as $row)
+                echo "<option value='" . $row['symptom'] . "'>";
+
+              ?>
+            </datalist>
+
+          </div>
+          <div class="list-group mt-5 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:220px;"> <!-- only list -->
             <?php
             foreach ($rows as $row)
-              echo "<option value='" . $row['symptom'] . "'>";
-
-            ?>
-          </datalist>
-
-        </div>
-        <div class="list-group mt-5 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:220px;"> <!-- only list -->
-          <?php
-          foreach ($rows as $row)
-            echo "<div class='list-group-item d-flex justify-content-between align-items-start list-group-item-action'>
+              echo "<div class='list-group-item d-flex justify-content-between align-items-start list-group-item-action'>
             <div class='ms-2 me-auto'>
               <div id='" . $row['symptom_id'] . "'>" . $row['symptom'] . "</div>
 
             </div>
             <span class='badge bg-secondary rounded-pill' onClick='listSelection(event)'>+</span>
           </div>";
-          ?>
+            ?>
 
-        </div>
-      </div>
-
-      <div class="col-md-4"> <!-- selected symptoms -->
-        <div class="list-group mt-5 border rounded rounded-3 overflow-y-auto shadow p-3 mb-5 bg-body-tertiary customDiv2" id="selectionDisplay">
-          <!-- new symptoms added inside here -->
-          <div class='list-group-item d-flex justify-content-between align-items-start list-group-item-dark'>
-            <div class='ms-2 me-auto'>
-              <div style="white-space:normal; word-break:break-word;"><b>My Symptoms:<b></div>
-            </div>
           </div>
         </div>
 
+        <div class="col-md-4"> <!-- selected symptoms -->
+          <div class="list-group mt-5 border rounded rounded-3 overflow-y-auto shadow p-3 mb-5 bg-body-tertiary customDiv2" id="selectionDisplay">
+            <!-- new symptoms added inside here -->
+            <div class='list-group-item d-flex justify-content-between align-items-start list-group-item-dark'>
+              <div class='ms-2 me-auto'>
+                <div style="white-space:normal; word-break:break-word;"><b>My Symptoms:<b></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <form action='process_selfCheckup.php'>
+          <input type='hidden' name="addedSymptomsList" value='' id='hiddenData'>
+          <button type="submit" class="btn btn-primary " id='submitButton' disabled>Submit</button>
+        </form>
+
       </div>
-
-      <form action='process_selfCheckup.php'>
-        <input type='hidden' name="addedSymptomsList" value='' id='hiddenData'>
-        <button type="submit" class="btn btn-primary " id='submitButton' disabled>Submit</button>
-      </form>
-
     </div>
     <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
       <br>
@@ -155,6 +157,7 @@ if (isset($_SESSION['userType'])) {
                                                                                                                                                 } else
                                                                                                                                                   echo 'homepage.php'; ?>">Return Home</a>
     </div>
+
   </div>
   <script>
     var jsonSymptomsData = JSON.parse('<?php echo $json_rows; ?>');
