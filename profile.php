@@ -29,6 +29,12 @@ try {
   <title>Profile</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
   <style>
     .form-control {
       font-size: 18px;
@@ -46,7 +52,7 @@ try {
   </style>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
   <?php
   if ($_SESSION['userType'] == "member")
     require('navbar_member.php');
@@ -59,7 +65,7 @@ try {
   <br /><br /> <br />
   <div class="container">
     <main class="form-signin w-100 m-auto">
-      <div class="border border-secondary border-2 rounded">
+      <div class="border border-secondary border-2 rounded bg-white">
         <form id='profileForm' onSubmit="return checkeditedInputs();" action='updateProfile.php' method='post' class="m-4" enctype="multipart/form-data">
           <h1 class="h3 mb-3 fw-normal text-center">Profile</h1>
 

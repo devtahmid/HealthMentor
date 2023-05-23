@@ -4,10 +4,15 @@
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
   <?php
   require("navbar_member.php");
   if (session_status() !== PHP_SESSION_ACTIVE)
@@ -16,7 +21,7 @@
 
   ?>
 
-  <nav class="navbar" style="background-color: #e3f2fd;">
+  <nav class="navbar" style="background-color: #9cd1f8;">
     <!-- <nav class="navbar" style="background-color: #90ccf4;"> -->
     <div class="container-fluid">
       <form class="d-flex mx-auto my-auto" role="search" onsubmit="return searchSelection(this)">
@@ -68,7 +73,7 @@
   <script>
     function searchSelection() {
       var selection = document.getElementById("searchBar").value;
-console.log(selection)
+      console.log(selection)
       selection = selection.trim().toLowerCase();
 
       if ("self checkup".includes(selection))

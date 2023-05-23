@@ -6,7 +6,7 @@ $passwordRegex = '/^[0-9A-Za-z]{5,16}$/';
 if (session_status() !== PHP_SESSION_ACTIVE)
   session_start();
 
-
+var_dump($_POST);
 if (isset($_SESSION['userId'])) {
   if ($_SESSION['userType'] == "admin")
     header('Location: adminDashboard.php');
@@ -18,7 +18,7 @@ if (isset($_SESSION['userId'])) {
 
 if (!isset($_POST['submit']))
   header('Location: login.php');
-elseif ($_POST['submit'] == 'Login') {  // if login clicked
+elseif ($_POST['hiddenSubmit'] == 'Login') {  // if login clicked
   if (!preg_match($emailRegex, $_POST['email'])) {
     $error = "invalid email format";
     header('Location: login.php?error=' . $error);
@@ -61,7 +61,7 @@ elseif ($_POST['submit'] == 'Login') {  // if login clicked
       }
     }
   }
-} elseif ($_POST['submit'] == 'Signup') {   //if sign up clicked
+} elseif ($_POST['hiddenSubmit'] == 'Signup') {   //if sign up clicked
 
   if (!preg_match($emailRegex, $_POST['email'])) {
     $error2 = "invalid email format";

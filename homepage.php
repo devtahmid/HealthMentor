@@ -7,11 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+    <script>
+        Weglot.initialize({
+            api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+        });
+    </script>
     <title>HOMEPAGE</title>
 
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
     <?php
     if (session_status() !== PHP_SESSION_ACTIVE)
         session_start();
@@ -159,8 +165,6 @@
 
 
     <script>
-
-
         function searchSelection() {
             var selection = document.getElementById("searchBar").value;
 

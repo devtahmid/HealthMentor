@@ -22,10 +22,16 @@ if (isset($_SESSION['userType'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
   <title>Games</title>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
 
 
   <br /> <br />
@@ -77,10 +83,10 @@ if (isset($_SESSION['userType'])) {
           <div class="card-body">
             <h3 class="card-title">Daily Solitaire Blue</h3>
             <p class="card-text">
-          <br>
-            <!-- <ul> -->
+              <br>
+              <!-- <ul> -->
 
-            <!-- </ul> -->
+              <!-- </ul> -->
             </p>
           </div> <!-- end card body 1 -->
 
@@ -96,10 +102,10 @@ if (isset($_SESSION['userType'])) {
           <div class="card-body">
             <h3 class="card-title">Cups Water Sort</h3>
             <p class="card-text">
-           <br>
-            <!-- <ul> -->
+              <br>
+              <!-- <ul> -->
 
-            <!-- </ul> -->
+              <!-- </ul> -->
             </p>
           </div> <!-- end card body 1 -->
 
@@ -116,10 +122,10 @@ if (isset($_SESSION['userType'])) {
           <div class="card-body">
             <h3 class="card-title">2048 Mege</h3>
             <p class="card-text">
-            <br>
-            <!-- <ul> -->
+              <br>
+              <!-- <ul> -->
 
-            <!-- </ul> -->
+              <!-- </ul> -->
             </p>
           </div> <!-- end card body 1 -->
           <a class="btn btn-primary" href='https://www.crazygames.com/game/2048-merge'>Play </a>
@@ -133,13 +139,13 @@ if (isset($_SESSION['userType'])) {
           <div class="card-body">
             <h3 class="card-title">Nullify</h3>
             <p class="card-text">
-            <br>
-            <!-- <ul> -->
+              <br>
+              <!-- <ul> -->
 
-            <!-- </ul> -->
+              <!-- </ul> -->
             </p>
           </div> <!-- end card body 1 -->
-          <a class="btn btn-primary" href="https://www.crazygames.com/game/nullify" >Play</a>
+          <a class="btn btn-primary" href="https://www.crazygames.com/game/nullify">Play</a>
 
         </div>
       </div>
@@ -150,13 +156,13 @@ if (isset($_SESSION['userType'])) {
           <div class="card-body">
             <h3 class="card-title">Brain Trainer</h3>
             <p class="card-text">
-            <br>
-            <!-- <ul> -->
+              <br>
+              <!-- <ul> -->
 
-            <!-- </ul> -->
+              <!-- </ul> -->
             </p>
           </div> <!-- end card body 1 -->
-          <a class="btn btn-primary" href="https://www.crazygames.com/game/brain-trainer" >Play</a>
+          <a class="btn btn-primary" href="https://www.crazygames.com/game/brain-trainer">Play</a>
 
         </div>
       </div>

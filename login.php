@@ -13,7 +13,12 @@
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   </head>
   <link rel="stylesheet" href="./css/login.css">
-
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
   <script src="js/reg_loginformvalidation.js"> </script>
 
 </head>
@@ -64,6 +69,7 @@
           </fieldset>
           <a href="recoverPassword.php">Forgot password?</a>
           <input type='hidden' name='JSEnabled' value='false'>
+          <input type='hidden' name='hiddenSubmit' value='Login'> <!-- becayse weglot was translating the value but the correct value is needed in controller -->
           <input type="submit" name='submit' value="Login" class="btn-login">
         </form>
       </div>
@@ -115,6 +121,7 @@
           if (isset($error2))
             echo "<script>alert('" . $error2 . "');</script>";
           ?>
+          <input type='hidden' name='hiddenSubmit' value='Signup'>
           <input type="submit" name='submit' class="btn-signup" value="Signup">
         </form>
       </div>

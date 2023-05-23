@@ -1,15 +1,15 @@
 <?php
 if (session_status() !== PHP_SESSION_ACTIVE)
-session_start();
+  session_start();
 if (isset($_SESSION['userType'])) {
-if ($_SESSION['userType'] == "member")
+  if ($_SESSION['userType'] == "member")
     require('navbar_member.php');
-else if ($_SESSION['userType'] == "admin")
+  else if ($_SESSION['userType'] == "admin")
     require('navbar_admin.php');
-else if ($_SESSION['userType'] == "specialist")
+  else if ($_SESSION['userType'] == "specialist")
     require('navbar_specialist.php');
 } else
-require('navbar_guest.php');
+  require('navbar_guest.php');
 
 ?>
 
@@ -24,6 +24,12 @@ require('navbar_guest.php');
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
   <style>
     @media (max-width: 767px) {
       .customDiv1 {
@@ -53,20 +59,22 @@ require('navbar_guest.php');
   </style>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
   <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
-  <div class="container-lg" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Self Checkup Service:</h2>
-    <h5 class="my-3">Result:</h5>
-    <div class="row ">
-      <div class="col-md-8">
-        <div class="row shadow rounded">
+  <div class="container-lg rounded-4 shadow bg-white" style="margin-top: 30px;">
 
-          <table class="table table-bordered border-black table-striped">
+    <h2 class="my-3 text-center">Self Checkup Service:</h2>
+
+    <div class="row">
+      <h5 class="my-3 col-12">Result:</h5>
+      <div class="col-md-8">
+        <div class="row shadow rounded bg-white">
+
+          <table class="table table-light table-bordered border-black table-striped">
             <thead>
               <tr>
                 <th scope='col'>Disorder Name</th>
@@ -100,7 +108,7 @@ require('navbar_guest.php');
             $riskResult = $db->query($riskSql);
             $riskRow = $riskResult->fetch();
         ?>
-            <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto" style="max-height:450px;">
+            <div class="my-3 p-2 border  border-black shadow-sm rounded overflow-y-auto bg-white" style="max-height:450px;">
               <div class='text-center my-2'>
                 <button type="button" class="btn btn-dark btn-lg disabled"><?php echo $diseaseNames[$key]; ?></button>
               </div>
@@ -177,7 +185,7 @@ require('navbar_guest.php');
       </div>
 
     </div>
-
+  </div>
 
 
 </body>

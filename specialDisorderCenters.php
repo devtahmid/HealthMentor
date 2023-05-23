@@ -15,6 +15,12 @@ require("navbar_member.php");
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
   <style>
     @media (max-width: 767px) {
       .customDiv1 {
@@ -44,7 +50,7 @@ require("navbar_member.php");
   </style>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
 
   <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
@@ -68,7 +74,7 @@ require("navbar_member.php");
 
         foreach ($rows as $row) {
         ?>
-          <div class="my-3 p-2 border row border-black shadow-sm rounded overflow-y-auto" style="max-height:420px;">
+          <div class="my-3 p-2 border row border-black shadow-sm rounded overflow-y-auto bg-white" style="max-height:420px;">
             <div class="col-md-9 order-2 order-md-1">
               <div class='mt-2'>
                 <b><?php echo $row['center_name']; ?></b>

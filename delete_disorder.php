@@ -1,6 +1,6 @@
 <?php
- if (session_status() !== PHP_SESSION_ACTIVE)
- session_start();
+if (session_status() !== PHP_SESSION_ACTIVE)
+  session_start();
 
 require("project_connection.php");
 
@@ -33,10 +33,9 @@ try {
   $rows = $result->fetchAll();
 
 
-$sqlCount = "SELECT COUNT(*) FROM `diseases` where `status` = 'active'";
-$countResult = $db->query($sqlCount);
-$count = $countResult->fetchColumn();
-
+  $sqlCount = "SELECT COUNT(*) FROM `diseases` where `status` = 'active'";
+  $countResult = $db->query($sqlCount);
+  $count = $countResult->fetchColumn();
 } catch (PDOException $e) {
   echo $e->getMessage();
   die();
@@ -55,13 +54,19 @@ $count = $countResult->fetchColumn();
   <title>Delete Disorders</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
 
   <br><br><br>
-  <div class='container-lg'>
+  <div class='container-lg '>
+    <div class="rounded-4 shadow bg-white py-3">
     <h4 class="mt-3 mb-2 mx-auto text-center"> Delete Disorder</h4>
 
     <div class="row">
@@ -140,12 +145,12 @@ $count = $countResult->fetchColumn();
           </tbody>
         </table>
       </div>
-
+      </div>
     </div>
 
     <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
-    <br>
-    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
+      <br>
+      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
                                                                                                                                                   if ($_SESSION['userType'] == "member")
                                                                                                                                                     echo 'memberDashboard.php';
                                                                                                                                                   else if ($_SESSION['userType'] == "admin")
@@ -154,7 +159,7 @@ $count = $countResult->fetchColumn();
                                                                                                                                                     echo 'specialistDashboard.php';
                                                                                                                                                 } else
                                                                                                                                                   echo 'homepage.php'; ?>">Return Home</a>
-                                                                                                                                                  </div>
+    </div>
 
   </div>
 </body>

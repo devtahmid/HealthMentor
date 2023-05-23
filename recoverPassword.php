@@ -13,12 +13,17 @@
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   </head>
   <link rel="stylesheet" href="./css/login.css">
-
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
   <script src="js/reg_loginformvalidation.js"> </script>
 
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
   <?php
   if (session_status() !== PHP_SESSION_ACTIVE)
     session_start();
@@ -38,7 +43,7 @@
     <div class="forms">
       <div class="form-wrapper is-active">
         <button type="button" class="switcher switcher-login">
-        Verify using Security question
+          Verify using Security question
           <span class="underline"></span>
         </button>
         <form class="form form-login" method='post' action="processRecoverPassword.php">
@@ -57,7 +62,7 @@
                 <option value="Where were you born?">Where were you born?</option>
                 <option value="What's your nickname?">What's your nickname?</option>
               </select>
-              <input id="signup-password-confirm"  name='security_answer' onkeyup="verifySecurityAnswer(this.value)" required maxlength="30">
+              <input id="signup-password-confirm" name='security_answer' onkeyup="verifySecurityAnswer(this.value)" required maxlength="30">
               <span id='security_msg'></span>
             </div>
 
@@ -72,7 +77,7 @@
     </div>
   </section>
   <!-- partial -->
- <!--  <script src="./js/script.js"></script> -->
+  <!--  <script src="./js/script.js"></script> -->
 
 </body>
 

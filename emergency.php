@@ -1,10 +1,15 @@
 <html>
 
 <head>
-
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
 </head>
 
-<body style="height:100vh;">
+<body style="background-color: #e3f2fd;" style="height:100vh;">
   <?php
   if (session_status() !== PHP_SESSION_ACTIVE)
     session_start();

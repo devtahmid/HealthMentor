@@ -1,4 +1,8 @@
 <?php
+
+if (session_status() !== PHP_SESSION_ACTIVE)
+  session_start();
+
 require("project_connection.php");
 try {
   $sql = "SELECT * FROM diseases where status = 'active'";
@@ -33,9 +37,15 @@ require("navbar_admin.php");
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
   <br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
@@ -43,62 +53,77 @@ require("navbar_admin.php");
   </div>
 
   <div class="container-md" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Add Treatment Center</h2>
+    <div class="rounded-4 shadow bg-white p-3">
+      <h2 class="my-3 text-center">Add Treatment Center</h2>
 
 
-    <form class="row" id="myForm" action="addTreatmentCenterProcess.php" onsubmit="return checkSubmitability()" method='post' enctype="multipart/form-data">
+      <form class="row" id="myForm" action="addTreatmentCenterProcess.php" onsubmit="return checkSubmitability()" method='post' enctype="multipart/form-data">
 
-      <div class="mb-3">
-        <label for="centerName3" class="form-label">Center Name</label>
-        <input type="text" class="form-control" id="centerName3" name='centerName' onkeyup="toggleButtonColour()" required>
+        <div class="mb-3">
+          <label for="centerName3" class="form-label">Center Name</label>
+          <input type="text" class="form-control" id="centerName3" name='centerName' onkeyup="toggleButtonColour()" required>
 
-      </div>
-
-
-      <div class="row mb-3" id='chooseDisorder'>
-        <label class="form-label">Disorders Treated by the center</label>
-
-        <div class="col-9 ">
-          <select class="form-select" id='selectSymptom'>
-            <option value="" disabled selected>Select from existing disorders</option>
-            <?php
-            foreach ($rows as $row) {
-              echo "<option value='" . $row['disease_id'] . "'>" . $row['disease'] . "</option>";
-            }
-            ?>
-
-          </select>
         </div>
-        <a class='btn btn-outline-success btn-sm col-3 fw-bolder' onclick="addSymptom('selectSymptom')">+</a>
-      </div>
 
-      <!-- disorders added by user will appear below -->
 
-      <input type='hidden' name='addedDisordersList' value='' id='hiddenData' />
+        <div class="row mb-3" id='chooseDisorder'>
+          <label class="form-label">Disorders Treated by the center</label>
 
-      <div class="row mb-3">
-        <label for="moreDetails3" class="col-form-label">More details</label>
-        <div class="">
-          <textarea type="text" class="form-control" id="moreDetails3" name='description' onkeyup="toggleButtonColour()" required></textarea>
+          <div class="col-9 ">
+            <select class="form-select" id='selectSymptom'>
+              <option value="" disabled selected>Select from existing disorders</option>
+              <?php
+              foreach ($rows as $row) {
+                echo "<option value='" . $row['disease_id'] . "'>" . $row['disease'] . "</option>";
+              }
+              ?>
+
+            </select>
+          </div>
+          <a class='btn btn-outline-success btn-sm col-3 fw-bolder' onclick="addSymptom('selectSymptom')">+</a>
         </div>
-      </div>
 
-      <div class="row mb-3">
-        <label for="picture3" class="col-form-label">Upload an image (image<=5MB) </label>
-            <div class="">
-              <input type="file" class="form-control" id="picture3" name='picfile'>
-            </div>
-      </div>
+        <!-- disorders added by user will appear below -->
 
-      <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add Treatment Center</button>
-    </form>
+        <input type='hidden' name='addedDisordersList' value='' id='hiddenData' />
 
-    <?php
-    if (isset($_GET['error']) && $_GET['error'] == 1) {
-      echo "<script> alert('File could not be uploaded'); </script>";
-    }
-    ?>
+        <div class="row mb-3">
+          <label for="moreDetails3" class="col-form-label">More details</label>
+          <div class="">
+            <textarea type="text" class="form-control" id="moreDetails3" name='description' onkeyup="toggleButtonColour()" required></textarea>
+          </div>
+        </div>
 
+        <div class="row mb-3">
+          <label for="picture3" class="col-form-label">Upload an image (image<=5MB) </label>
+              <div class="">
+                <input type="file" class="form-control" id="picture3" name='picfile'>
+              </div>
+        </div>
+
+        <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add Treatment Center</button>
+      </form>
+
+      <?php
+      if (isset($_GET['error']) && $_GET['error'] == 1) {
+        echo "<script> alert('File could not be uploaded'); </script>";
+      }
+      ?>
+
+    </div>
+
+    <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+      <br>
+      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
+                                                                                                                                                  if ($_SESSION['userType'] == "member")
+                                                                                                                                                    echo 'memberDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                    echo 'adminDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                    echo 'specialistDashboard.php';
+                                                                                                                                                } else
+                                                                                                                                                  echo 'homepage.php'; ?>">Return Home</a>
+    </div>
   </div>
 
   <script>

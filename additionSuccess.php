@@ -7,21 +7,27 @@
   <title>Addition Success</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
   <?php
   if (session_status() !== PHP_SESSION_ACTIVE)
-  session_start();
-if (isset($_SESSION['userType'])) {
-  if ($_SESSION['userType'] == "member")
+    session_start();
+  if (isset($_SESSION['userType'])) {
+    if ($_SESSION['userType'] == "member")
       require('navbar_member.php');
-  else if ($_SESSION['userType'] == "admin")
+    else if ($_SESSION['userType'] == "admin")
       require('navbar_admin.php');
-  else if ($_SESSION['userType'] == "specialist")
+    else if ($_SESSION['userType'] == "specialist")
       require('navbar_specialist.php');
-} else
-  require('navbar_guest.php');
+  } else
+    require('navbar_guest.php');
 
   ?>
   <div class="container-md" style="margin-top: 130px;">

@@ -1,4 +1,7 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE)
+  session_start();
+
 
 require("navbar_admin.php");
 
@@ -16,9 +19,15 @@ require("navbar_admin.php");
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
   <br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
@@ -26,56 +35,68 @@ require("navbar_admin.php");
   </div>
 
   <div class="container-md" style="margin-top: 30px;">
-    <h2 class="my-3 text-center">Add Specialist</h2>
+    <div class="rounded-4 shadow bg-white p-3">
+      <h2 class="my-3 text-center">Add Specialist</h2>
 
 
-    <form class="row" id="myForm" method='post' action="addSpecialistProcess.php" onsubmit="return checkSubmitability()" enctype="multipart/form-data">
+      <form class="row" id="myForm" method='post' action="addSpecialistProcess.php" onsubmit="return checkSubmitability()" enctype="multipart/form-data">
 
-      <div class="mb-3">
-        <label for="centerName3" class="form-label">Specialist Name</label>
-        <input type="text" class="form-control" id="centerName3" name='centerName' onkeyup="toggleButtonColour()" minlength='2' required>
-      </div>
-
-
-      <div class="mb-3">
-        <label for="userEmail3" class="form-label">Specialist Email</label>
-        <input type="text" class="form-control" id="userEmail3" name='userEmail' onkeyup="toggleButtonColour()" required>
-      </div>
-
-
-      <div class="mb-3">
-        <label for="userPassword" class="form-label">Specialist Password</label>
-        <input type="password" class="form-control" id="userPassword" name='userPassword' onkeyup="toggleButtonColour()" required>
-      </div>
-
-
-      <div class="row mb-3" id="chooseSymptom">
-        <label class="form-label" for='selectSymptom'>Enter Areas of Expertise</label>
-        <div class="col-9 ">
-          <input type="text" class="form-control" id="selectSymptom" maxlength="150">
+        <div class="mb-3">
+          <label for="centerName3" class="form-label">Specialist Name</label>
+          <input type="text" class="form-control" id="centerName3" name='centerName' onkeyup="toggleButtonColour()" minlength='2' required>
         </div>
-        <a class='btn btn-outline-success btn-sm col-3 fw-bolder' onclick="addSymptom('selectSymptom')">+</a>
-      </div>
-
-      <div class="row mb-4">
-        <label for="picture3" class="col-form-label">Upload specialist image (image<=5MB) </label>
-            <div class="">
-              <input type="file" class="form-control" id="picture3" name='picfile'>
-            </div>
-      </div>
-
-      <!-- disorders added by user will appear below -->
-
-      <input type='hidden' name='addedDisordersList' value='' id='hiddenData' />
-      <?php
-      if (isset($_GET['error']) && $_GET['error'] == 1) {
-        echo "<script> alert('File could not be uploaded'); </script>";
-      }
-      ?>
-      <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add Specialist</button>
-    </form>
 
 
+        <div class="mb-3">
+          <label for="userEmail3" class="form-label">Specialist Email</label>
+          <input type="text" class="form-control" id="userEmail3" name='userEmail' onkeyup="toggleButtonColour()" required>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="userPassword" class="form-label">Specialist Password</label>
+          <input type="password" class="form-control" id="userPassword" name='userPassword' onkeyup="toggleButtonColour()" required>
+        </div>
+
+
+        <div class="row mb-3" id="chooseSymptom">
+          <label class="form-label" for='selectSymptom'>Enter Areas of Expertise</label>
+          <div class="col-9 ">
+            <input type="text" class="form-control" id="selectSymptom" maxlength="150">
+          </div>
+          <a class='btn btn-outline-success btn-sm col-3 fw-bolder' onclick="addSymptom('selectSymptom')">+</a>
+        </div>
+
+        <div class="row mb-4">
+          <label for="picture3" class="col-form-label">Upload specialist image (image<=5MB) </label>
+              <div class="">
+                <input type="file" class="form-control" id="picture3" name='picfile'>
+              </div>
+        </div>
+
+        <!-- disorders added by user will appear below -->
+
+        <input type='hidden' name='addedDisordersList' value='' id='hiddenData' />
+        <?php
+        if (isset($_GET['error']) && $_GET['error'] == 1) {
+          echo "<script> alert('File could not be uploaded'); </script>";
+        }
+        ?>
+        <button class='btn btn-primary btn-md col-4 mx-auto disabled' id='addButton'>Add Specialist</button>
+      </form>
+    </div>
+    <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+      <br>
+      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
+                                                                                                                                                  if ($_SESSION['userType'] == "member")
+                                                                                                                                                    echo 'memberDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                    echo 'adminDashboard.php';
+                                                                                                                                                  else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                    echo 'specialistDashboard.php';
+                                                                                                                                                } else
+                                                                                                                                                  echo 'homepage.php'; ?>">Return Home</a>
+    </div>
   </div>
 
   <script>

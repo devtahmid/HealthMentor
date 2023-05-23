@@ -36,15 +36,21 @@ require("navbar_admin.php");
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
   <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
-  <div class="container-md" style="margin-top: 30px;">
+  <div class="container-md rounded-4 shadow bg-white py-3" style="margin-top: 30px;">
     <h2 class="my-3 text-center">Add disorder</h2>
 
 
@@ -114,8 +120,23 @@ require("navbar_admin.php");
 
     <!-- dropdown displaying all the results-->
 
-    
+
   </div>
+
+
+  <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+    <br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
+                                                                                                                                                if ($_SESSION['userType'] == "member")
+                                                                                                                                                  echo 'memberDashboard.php';
+                                                                                                                                                else if ($_SESSION['userType'] == "admin")
+                                                                                                                                                  echo 'adminDashboard.php';
+                                                                                                                                                else if ($_SESSION['userType'] == "specialist")
+                                                                                                                                                  echo 'specialistDashboard.php';
+                                                                                                                                              } else
+                                                                                                                                                echo 'homepage.php'; ?>">Return Home</a>
+  </div>
+
 
   <script>
     var jsonSymptomsData = JSON.parse('<?php echo $json_rows; ?>');

@@ -21,11 +21,16 @@ $result = $db->query($sqlFetchMessages);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
   <title>Chat with members</title>
 </head>
 
-<body>
+<body style="background-color: #e3f2fd;">
 
   <br /> <br />
   <br />
@@ -35,20 +40,21 @@ $result = $db->query($sqlFetchMessages);
 
       <?php
       foreach ($result as $memberRow) {
-        $sqlMemberDetails = "SELECT name FROM users WHERE id =" . $memberRow['fromId'];
+        $sqlMemberDetails = "SELECT name, profile_pic FROM users WHERE id =" . $memberRow['fromId'];
         $memberDetails = $db->query($sqlMemberDetails);
         $firstRow = $memberDetails->fetch();
       ?>
         <div class="card">
-          <div class="row g-0 align-items-center">
+          <div class="row g-0 align-items-center" style="max-height:289px;">
 
-            <div class="col-4 ">
-              <img src="assets/braintrainer.png" class="img-fluid rounded-start" alt="...">
+            <div class="col-4 mh-100 ">
+              <img src="uploadedimages/<?php echo $firstRow['profile_pic']; ?>" class="img-fluid rounded-start mh-100" alt="...">
             </div>
             <div class="col-8">
 
               <div class="card-body">
                 <h5 class="card-title"><?php echo $firstRow['name']; ?></h5>
+                <h6 class="card-title">Member ID: <?php echo $memberRow['fromId']; ?></h6>
                 <a class="card-text" href="specialistMyHealth.php?memberId=<?php echo $memberRow['fromId']; ?>">User Self-check result history </a><br>
                 <a href="chatpage.php?toId=<?php echo $memberRow['fromId']; ?>" class="btn btn-primary mt-1">Chat</a>
               </div>

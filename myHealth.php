@@ -26,6 +26,12 @@ if (isset($_SESSION['userType'])) {
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+  <script>
+    Weglot.initialize({
+      api_key: 'wg_a4e18a6b7b6b73066b2fb181dc6a5a109'
+    });
+  </script>
   <style>
     @media (max-width: 767px) {
       .customDiv1 {
@@ -69,7 +75,7 @@ if (isset($_SESSION['userType'])) {
   </style>
 </head>
 
-<body>
+<body style="background: url(assets/background.png); background-size: cover;">
   <br><br><br>
   <div class="mx-auto" style="width:150px; height:150px;">
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
@@ -90,7 +96,7 @@ if (isset($_SESSION['userType'])) {
           $result = $db->query($sql);
           $rows = $result->fetchAll();
           ?>
-          <table class="table table-bordered border-black table-striped">
+          <table class="table table-light table-bordered border-black table-striped">
             <thead>
               <tr>
                 <th scope='col'>Date Checked</th>
