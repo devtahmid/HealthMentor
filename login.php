@@ -61,6 +61,7 @@
             </div>
             <div class="signup-link" style="color:red;">
               <?php
+
               if (isset($_GET['error'])) {
                 echo $_GET['error'];
               }
