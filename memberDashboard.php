@@ -47,13 +47,13 @@
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
   </div>
-  <div style="margin:auto; width:30%; height:50%; margin-top: 10%;">
+  <div style="margin:auto; width:40%; height:50%; margin-top: 10%;">
 
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href='self_checkup_form.php'>Self Checkup</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="myHealth.php">My Health</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="specialDisorderCenters.php">Special Disorder Centers</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="memberTalkHome.php">Expert/ Specialist</a><br>
-    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="emergency.php">Emergency</a><br>
+    <a class='btn btn-dark btn-lg d-block px-1' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="emergency.php">Emergency</a><br>
 
 
 

@@ -45,7 +45,7 @@
     </lord-icon>
   </div>
 
-  <div style="margin:auto; width:30%; height:50%; margin-top: 5%;">
+  <div style="margin:auto; width:40%; height:50%; margin-top: 5%;">
 
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="userAccountManagement.php">Member Account Management</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="customer_support.php">Customer Messages</a><br>
