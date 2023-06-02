@@ -19,7 +19,7 @@
   ?>
 
 
-  <br><br>
+  <br><br><br>
   <h1 style="text-align: center;">Self-Health Care</h1>
   <br>
   <div class="mx-auto" style="width:150px; height:150px;">
