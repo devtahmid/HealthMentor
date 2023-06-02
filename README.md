@@ -15,7 +15,7 @@ Diagnose mental disorders and receive recommended treatments  along with being a
 
 ### Guest and member users can perform self-checkup and receive recommended treatments and specialists.
 
-(readmeassets/selfcheckup.mp4)
+![selfcheckup.mp4](https://github.com/devtahmid/readmeassets/selfcheckup.mp4)
 
 ### Members can view their checkup history
 
