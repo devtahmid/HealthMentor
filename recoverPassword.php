@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <title>AnimaForm</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
   </head>
   <link rel="stylesheet" href="./css/login.css">
@@ -23,7 +22,7 @@
 
 </head>
 
-<body style="background-color: #e3f2fd;">
+<body>
   <?php
   if (session_status() !== PHP_SESSION_ACTIVE)
     session_start();
@@ -35,7 +34,7 @@
     else if ($_SESSION['userType'] == "specialist")
       require('navbar_specialist.php');
   } else
-    require('navbar_guest.php');
+    require('navbar_guest2.php');
   ?>
   <!-- partial:index.partial.html -->
   <section class="forms-section">

@@ -93,7 +93,7 @@ if (isset($_SESSION['userType'])) {
         if (session_status() !== PHP_SESSION_ACTIVE)
           session_start();
         $userId = $_SESSION['userId'];
-        $sql = "SELECT * FROM checkup_history WHERE user_id = '$userId' ORDER BY date DESC";
+        $sql = "SELECT * FROM checkup_history WHERE user_id = '$userId' ORDER BY date DESC, check_hist_id DESC";
         $result = $db->query($sql);
         $rows = $result->fetchAll();
         ?>

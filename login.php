@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>AnimaForm</title>
+    <title>Login</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
@@ -35,7 +35,7 @@
     else if ($_SESSION['userType'] == "specialist")
       require('navbar_specialist.php');
   } else
-    require('navbar_guest.php');
+    require('navbar_guest2.php');
   ?>
   <!-- partial:index.partial.html -->
   <section class="forms-section">
@@ -51,12 +51,12 @@
             <legend>Please, enter your email and password for login.</legend>
             <div class="input-block">
               <label for="login-email">E-mail</label>
-              <input id="login-email" type="email" name="email" onkeyup="checkMAIL(this.value, 'loginemail')" placeholder="Email Address" required>
+              <input id="login-email" type="email" name="email" onkeyup="checkMAIL(this.value, 'loginemail')" placeholder="Email Address" required value="<?php if (isset($_GET['fillemail'])) echo $_GET['fillemail']; ?>">
               <span id='loginemail'></span>
             </div>
             <div class="input-block">
               <label for="login-password">Password</label>
-              <input id="login-password" name="password" onkeyup="checkPWD(this.value,'login_pwd_msg')" type="password" placeholder="Password" required>
+              <input id="login-password" name="password" onkeyup="checkPWD(this.value,'login_pwd_msg')" type="password" placeholder="Password" required value="<?php if (isset($_GET['fillpwd'])) echo $_GET['fillpwd']; ?>">
               <div id="login_pwd_msg" class="form-text">5-16 alphanumeric characters</div>
             </div>
             <div class="signup-link" style="color:red;">
@@ -72,6 +72,7 @@
           <input type='hidden' name='JSEnabled' value='false'>
           <input type='hidden' name='hiddenSubmit' value='Login'> <!-- becayse weglot was translating the value but the correct value is needed in controller -->
           <input type="submit" name='submit' value="Login" class="btn-login">
+          <input type="submit" value="Sample Credentials" style="padding:0px 10px;" class="btn-login" onclick="return displaySampleCredentials()">
         </form>
       </div>
       <div class="form-wrapper">
@@ -126,6 +127,43 @@
           <input type="submit" name='submit' class="btn-signup" value="Signup">
         </form>
       </div>
+
+
+      <!-- popup -->
+
+      <div style="z-index:999; width:320px; height:335px;
+		border:2px solid black; background:white;
+  border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.40) 0px 42px 42px, rgba(0, 0, 0, 0.25) 0px 15px 15px; position:absolute; top:40%; left:45%; right:50%;  transform: translate(-50%, -50%); padding:3px; display:none;" id="credentialsPopup">
+
+        <span style="font-weight:bolder;">Sample Credentials</span>
+        <span style="font-weight:bolder; color:#1a1f71; padding:5px; margin-left:115px; cursor:pointer;" id='popupClose'>X</span>
+        <hr style="background-color:#1a1f71; height:2px; border:none;">
+        <u>Member</u>
+        <p>Email:&emsp;&emsp; &nbsp; maximus1@gmail.com <br>
+          Password: &nbsp; Max12345</p><br>
+        <u>Admin</u>
+        <p>Email:&emsp;&emsp; &nbsp; admin@admin.com <br>
+          Password: &nbsp; admin</p><br>
+        <u>Specialist</u>
+        <p>Email:&emsp;&emsp; &nbsp; karenclapper@pm.com <br>
+          Password: &nbsp; karenclapper</p>
+      </div>
+      <!-- popup js -->
+      <script>
+        document.getElementById('popupClose').addEventListener('click', displaySampleCredentials);
+
+        function displaySampleCredentials() {
+          if (document.getElementById('credentialsPopup').style.display == 'none')
+            document.getElementById('credentialsPopup').style.display = 'block';
+          else
+            document.getElementById('credentialsPopup').style.display = 'none'
+
+          return false; //because a submit button calling it
+        }
+      </script>
+
+
+
     </div>
   </section>
   <!-- partial -->

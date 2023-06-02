@@ -45,12 +45,7 @@
             <h2 class="lg-view">Contact</h2>
             <h2 class="sm-view">Let's Chat</h2>
             <p>* Required</p>
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <input type="text" name="name" placeholder="Name *" required />
+            <input type="text" name="name" placeholder="Name *" required /><br>
             <input type="email" name="email" placeholder="Email *" required />
             <input type="phone" name="phone" placeholder="Phone *" required />
             <textarea rows="4" name="message" placeholder="Message *" maxlength="499" required></textarea>

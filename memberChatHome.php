@@ -45,11 +45,15 @@ try {
 </head>
 
 <body style="background-color: #e3f2fd;">
-
+  <br>
   <br>
   <div class="mx-auto" style="width:150px; height:150px;">
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" colors="primary:#92140c,secondary:#f9c9c0" style="width:150px;height:150px">
     </lord-icon>
+    <!--
+      inserting attribution here since i dont have a footer
+      <a href="https://lordicon.com/">Icons by Lordicon.com</a>
+     -->
   </div>
   <main class="container-md">
     <div class="row">
@@ -103,6 +107,7 @@ try {
       }
       ?>
     </div>
+
   </main>
 
   <script>
@@ -112,7 +117,6 @@ try {
       e.style.display = 'none';
     }
   </script>
-
 </body>
 
 </html>

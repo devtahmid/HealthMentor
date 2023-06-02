@@ -143,11 +143,14 @@ try {
             </tbody>
           </table>
         </div>
+
+        <button class='btn btn-primary btn-md mx-auto text-center px-3 col-auto' id='addButton'>Add Treatment Center</button>
+
       </div>
 
-      <div style="width:30%; margin-left:auto; margin-right:auto;" class="text-center">
+      <!-- <div style="width:30%; margin-left:auto; margin-right:auto;" class="text-center">
         <a class='btn btn-dark d-block ' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="add_specialist_form.php">Add Specialist</a>
-      </div>
+      </div> -->
 
     </div>
     <br>

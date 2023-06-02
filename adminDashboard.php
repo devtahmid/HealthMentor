@@ -24,7 +24,7 @@
         <input type="text" list="searchService" class="form-control me-2" placeholder="search" id='searchBar'>
         <datalist id="searchService">
 
-          <option value='User Account Management'>
+          <option value='Member Account Management'>
           <option value='Customer Messages'>
           <option value='Add Disorder'>
           <option value='Delete Disorders'>
@@ -45,9 +45,9 @@
     </lord-icon>
   </div>
 
-  <div style="margin:auto; width:30%; height:50%; margin-top: 10%;">
+  <div style="margin:auto; width:30%; height:50%; margin-top: 5%;">
 
-    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="userAccountManagement.php">User Account Management</a><br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="userAccountManagement.php">Member Account Management</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="customer_support.php">Customer Messages</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="new_disorder_form.php">Add Disorder</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="delete_disorder.php">Delete Disorders</a><br>
@@ -75,7 +75,7 @@
       console.log(selection);
       selection = selection.trim().toLowerCase();
 
-      if ("user account management".includes(selection))
+      if ("member account management".includes(selection))
         window.location.href = "userAccountManagement.php";
       else if ("customer messages".includes(selection))
         window.location.href = "customer_support.php";

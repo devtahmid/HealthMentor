@@ -77,7 +77,7 @@ try {
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 text-center">
-                    Number of total User Accounts</div>
+                    Number of total Member Accounts</div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800 text-center"><?php echo count($rows) ?> </div>
                 </div>
                 <div class="col-auto">
