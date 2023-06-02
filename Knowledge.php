@@ -31,6 +31,7 @@
   ?>
 
   <main>
+    <br>
     <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
     <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" style="width:150px;height:150px">
     </lord-icon>

@@ -53,7 +53,6 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manage User Accounts</title>
   <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
   <script>
     Weglot.initialize({
