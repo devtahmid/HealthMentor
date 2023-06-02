@@ -124,15 +124,9 @@ if (isset($_GET['memberId'])) {
     </div>
     <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
       <br>
-      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php if (isset($_SESSION['userType'])) {
-                                                                                                                                                  if ($_SESSION['userType'] == "member")
-                                                                                                                                                    echo 'memberDashboard.php';
-                                                                                                                                                  else if ($_SESSION['userType'] == "admin")
-                                                                                                                                                    echo 'adminDashboard.php';
-                                                                                                                                                  else if ($_SESSION['userType'] == "specialist")
-                                                                                                                                                    echo 'specialistDashboard.php';
-                                                                                                                                                } else
-                                                                                                                                                  echo 'homepage.php'; ?>">Return Home</a>
+      <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php
+                                                                                                                                                echo 'specialistDashboard.php';
+                                                                                                                                                ?>">Return Home</a>
     </div>
   </div>
 

@@ -52,7 +52,7 @@
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href='self_checkup_form.php'>Self Checkup</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="myHealth.php">My Health</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="specialDisorderCenters.php">Special Disorder Centers</a><br>
-    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="memberChatHome.php">Expert/ Specialist</a><br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="memberTalkHome.php">Expert/ Specialist</a><br>
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="emergency.php">Emergency</a><br>
 
 
@@ -83,7 +83,7 @@
       else if ("special disorder centers".includes(selection))
         window.location.href = "specialDisorderCenters.php";
       else if ("expert/specialist".includes(selection))
-        window.location.href = "memberChatHome.php";
+        window.location.href = "memberTalkHome.php";
       else if ("emergency".includes(selection))
         window.location.href = "emergency.php";
       else

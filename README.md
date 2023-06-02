@@ -7,7 +7,7 @@
 
 Diagnose mental disorders and receive recommended treatments  along with being able to chat wth the specialists. Admin can log in and perform management tasks for users, disorders, specialists, and more.
 
-**Hosted at**: [http://chargeit.epizy.com](http://chargeit.epizy.com/index.php?fillemail=sarakashov1@gmail.com&fillpwd=sarakashov1)
+**Hosted at**: [http://healthmentor.infinityfreeapp.com](http://healthmentor.infinityfreeapp.com/login.php?fillemail=maximus1@gmail.com&fillpwd=Max12345)
 
 
 
@@ -20,12 +20,12 @@ https://github.com/devtahmid/HealthMentor/assets/27241074/cd90350e-ed60-498e-b06
 
 ### Members can view their checkup history
 
-![checkup history image](./readmeassets/checkuphistory.png)  
+![checkup history image](./readmeassets/checkuphistory.png)
 
 
 ### Members can chat with specialists
 
-![members chat with specialists ](./readmeassets/memberchathome.png)  
+![members chat with specialists ](./readmeassets/memberchathome.png)
 
 
 ### Admin can add and manage disorders in the DB
@@ -35,7 +35,7 @@ https://github.com/devtahmid/HealthMentor/assets/27241074/914f9dc6-d907-4859-85e
 
 ### Admin can add and manage specialists in the DB
 
-![manage specialists](./readmeassets/managespecialists.png)  
+![manage specialists](./readmeassets/managespecialists.png)
 
 
 ### Admin can read feedback submitted by users in contact.php

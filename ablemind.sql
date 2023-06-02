@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2023 at 08:01 PM
+-- Generation Time: Jun 02, 2023 at 09:17 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -493,7 +493,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `profile_pic`, `userStatus`) VALUES
 (1, 'Admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'picscenary116856527571550036025647905159fd49.jpg', 'active'),
-(2, 'Max', 'maximus1@gmail.com', '390c97e1249a58cf0b510d81f35f771b', 'member', 'default.jpg', 'active'),
+(2, 'Max', 'maximus1@gmail.com', '390c97e1249a58cf0b510d81f35f771b', 'member', 'pic21685733106786563711647a3ef2e2624.png', 'active'),
 (3, 'aa', 'aaa@aa.com', '7c3d596ed03ab9116c547b0eb678b247', 'member', 'default.jpg', 'inactive'),
 (14, 'specialis three', 'specialist3@pm.com', 'b4a7495aa0ec7fc2caa321ba632c36ef', 'specialist', 'default.jpg', 'inactive'),
 (15, 'Karen Clapper', 'karenclapper@pm.com', 'f0a409766608747e98d81cf932c48ea0', 'specialist', 'pickaren16837770081131057335645c65f07b323.jpg', 'active'),

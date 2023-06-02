@@ -22,4 +22,4 @@ try {
   echo $e->getMessage();
 }
 
-header('Location: chatpage.php?toId=' . $toId);
+header('Location: talkpage.php?toId=' . $toId);

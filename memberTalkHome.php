@@ -96,7 +96,7 @@ try {
               </div> <!-- end card body 1 -->
 
 
-              <a class="btn btn-primary" href='chatpage.php?toId=<?php echo $row['id']; ?>'>Chat </a>
+              <a class="btn btn-primary" href='talkpage.php?toId=<?php echo $row['id']; ?>'>Chat </a>
 
             </div>
           </div>

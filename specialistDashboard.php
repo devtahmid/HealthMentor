@@ -28,7 +28,7 @@
   </div>
   <div style="margin:auto; width:30%; height:50%; margin-top: 10%;">
     <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="specialistMyHealth.php">Member Checkup History</a><br>
-    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="specialistChatHome.php">Chat with members</a><br>
+    <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="specialistTalkHome.php">Chat with members</a><br>
 
 
   </div>

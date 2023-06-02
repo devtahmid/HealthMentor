@@ -56,7 +56,7 @@ $result = $db->query($sqlFetchMessages);
                 <h5 class="card-title"><?php echo $firstRow['name']; ?></h5>
                 <h6 class="card-title">Member ID: <?php echo $memberRow['fromId']; ?></h6>
                 <a class="card-text" href="specialistMyHealth.php?memberId=<?php echo $memberRow['fromId']; ?>">User Self-check result history </a><br>
-                <a href="chatpage.php?toId=<?php echo $memberRow['fromId']; ?>" class="btn btn-primary mt-1">Chat</a>
+                <a href="talkpage.php?toId=<?php echo $memberRow['fromId']; ?>" class="btn btn-primary mt-1">Chat</a>
               </div>
             </div>
           </div>
@@ -66,6 +66,13 @@ $result = $db->query($sqlFetchMessages);
         ?>
 
 
+        </div>
+
+        <div style="width:30%; margin-left:auto; margin-right:auto; margin-bottom:20px;">
+          <br>
+          <a class='btn btn-dark btn-lg d-block' style="background-image: linear-gradient(0deg, rgb(0, 172, 238) 0%, rgb(2, 126, 251) 100%);" href="<?php
+                                                                                                                                                    echo 'specialistDashboard.php';
+                                                                                                                                                    ?>">Return Home</a>
         </div>
   </main>
 </body>
