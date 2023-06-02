@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 17, 2023 at 12:06 AM
+-- Generation Time: Jun 02, 2023 at 08:01 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -47,7 +47,10 @@ INSERT INTO `checkup_history` (`check_hist_id`, `user_id`, `date`, `result_in_js
 (18, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
 (19, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
 (20, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
-(21, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}');
+(21, 1, '2023-05-16', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
+(22, 2, '2023-05-23', '{\"4\":{\"totalSymptoms\":4,\"percentage\":75},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
+(23, 2, '2023-06-01', '{\"4\":{\"totalSymptoms\":4,\"percentage\":50},\"6\":{\"totalSymptoms\":6,\"percentage\":33.3299999999999982946974341757595539093017578125},\"10\":{\"totalSymptoms\":3,\"percentage\":33.3299999999999982946974341757595539093017578125},\"12\":{\"totalSymptoms\":3,\"percentage\":33.3299999999999982946974341757595539093017578125},\"11\":{\"totalSymptoms\":3,\"percentage\":66.6700000000000017053025658242404460906982421875},\"5\":{\"totalSymptoms\":5,\"percentage\":20}}'),
+(24, 2, '2023-06-01', '{\"4\":{\"totalSymptoms\":4,\"percentage\":75},\"6\":{\"totalSymptoms\":6,\"percentage\":33.3299999999999982946974341757595539093017578125},\"10\":{\"totalSymptoms\":3,\"percentage\":33.3299999999999982946974341757595539093017578125},\"11\":{\"totalSymptoms\":3,\"percentage\":33.3299999999999982946974341757595539093017578125},\"12\":{\"totalSymptoms\":3,\"percentage\":33.3299999999999982946974341757595539093017578125},\"16\":{\"totalSymptoms\":4,\"percentage\":25}}');
 
 -- --------------------------------------------------------
 
@@ -93,7 +96,7 @@ CREATE TABLE `diseases` (
 --
 
 INSERT INTO `diseases` (`disease_id`, `disease`, `status`, `riskType`) VALUES
-(1, 'ADHD (attention deficit hyperactivity disorder)', 'inactive', 'Medium risk'),
+(1, 'ADHD (attention deficit hyperactivity disorder)', 'active', 'Medium risk'),
 (4, 'Autism', 'active', 'High risk'),
 (5, 'Alzheimer\'s disorder', 'active', 'High risk'),
 (6, 'Anxiety disorders', 'active', 'Medium risk'),
@@ -110,7 +113,8 @@ INSERT INTO `diseases` (`disease_id`, `disease`, `status`, `riskType`) VALUES
 (18, 'Phobias', 'active', 'Medium risk'),
 (19, 'Dyscalculia', 'active', 'Low risk'),
 (20, 'Paranoia', 'active', 'High risk'),
-(21, 'Intellectual Disability', 'active', 'High risk');
+(21, 'Intellectual Disability', 'active', 'High risk'),
+(26, 'Psychotic Disorder', 'active', 'High risk');
 
 -- --------------------------------------------------------
 
@@ -176,7 +180,11 @@ INSERT INTO `disease_symptoms` (`dis_symp_id`, `disease_id`, `symptom_id`) VALUE
 (51, 20, 56),
 (52, 20, 57),
 (53, 21, 58),
-(54, 21, 59);
+(54, 21, 59),
+(60, 26, 48),
+(61, 26, 49),
+(62, 26, 50),
+(63, 26, 51);
 
 -- --------------------------------------------------------
 
@@ -210,7 +218,9 @@ INSERT INTO `disease__treatmentcenter` (`dis_treatcenter_id`, `disease_id`, `tre
 (17, 11, 6),
 (18, 13, 6),
 (19, 4, 9),
-(20, 21, 9);
+(20, 21, 9),
+(21, 16, 10),
+(22, 7, 10);
 
 -- --------------------------------------------------------
 
@@ -321,7 +331,15 @@ INSERT INTO `specialists-expertise` (`rowid`, `specialistId`, `expertise`) VALUE
 (26, 24, 'ttesting'),
 (27, 24, 'testing2'),
 (28, 25, 'test two'),
-(29, 26, 'test test three');
+(29, 26, 'test test three'),
+(30, 27, 'Autism Spectrum Disorder'),
+(31, 27, 'Cultural and Linguistic Diversity/Bilingual Speakers/English as a Second Language'),
+(32, 27, 'Developmental Language Disorder'),
+(33, 27, 'Language/Learning Disabilities'),
+(34, 27, 'Parent Coaching'),
+(35, 27, 'Speech Sound Disorders'),
+(36, 27, 'Literacy: Reading/Dyslexia'),
+(37, 27, 'Literacy: Writing/Spelling');
 
 -- --------------------------------------------------------
 
@@ -422,7 +440,8 @@ INSERT INTO `treatments` (`treatment_id`, `treatment`, `disease_id`) VALUES
 (16, 'Exposure therapy, cognitive behavioral therapy, and medication for co-occurring conditions', 18),
 (17, 'Educational therapy, accommodations in school or work, and assistive technology', 19),
 (18, 'Medication, psychotherapy, and lifestyle changes', 20),
-(19, 'Education and training, behavioral therapy, and medication for co-occurring conditions', 21);
+(19, 'Education and training, behavioral therapy, and medication for co-occurring conditions', 21),
+(24, 'Medication, psychotherapy, and support for caregivers', 26);
 
 -- --------------------------------------------------------
 
@@ -449,7 +468,8 @@ INSERT INTO `treatment_center` (`treat_center_id`, `center_name`, `description`,
 (6, 'Britus International School - Special Education', 'Special education school in Bu Quwah\r\nAddress: Bldg 2312, Road 5755, Block 457, Bu Quwah\r\nPhone: 1656 8120', 'active', 'britus.jpeg'),
 (7, 'The RIA Institute', 'Education center in Manama\r\nAddress: villa 2749 Rd No 2771, Manama\r\nPhone: 1771 6871', 'active', 'ria.jpg'),
 (8, 'Bahrain Institute for Special Education', 'Learning center in Manama\r\nAddress: 6HG4+R7H, Manama\r\nPhone: 1755 6613', 'active', 'bahraininstitutespecial.jpg'),
-(9, 'test treatment center', 'more details 1 ', 'inactive', 'picscenary116842606025586997326463c6faba17f.jpg');
+(9, 'test treatment center', 'more details 1 ', 'inactive', 'picscenary116842606025586997326463c6faba17f.jpg'),
+(10, 'American Mission Hospital', 'Hospital in Manama\r\nAddress: Manama\r\nHours: open 24 hours\r\nPhone: 17171717', 'active', 'picamerican16856526941577501263647904d649f0d.png');
 
 -- --------------------------------------------------------
 
@@ -472,8 +492,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `profile_pic`, `userStatus`) VALUES
-(1, 'Admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'default.jpg', 'active'),
-(2, 'member one', 'member1@gmail.com', 'c7764cfed23c5ca3bb393308a0da2306', 'member', 'default.jpg', 'active'),
+(1, 'Admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'picscenary116856527571550036025647905159fd49.jpg', 'active'),
+(2, 'Max', 'maximus1@gmail.com', '390c97e1249a58cf0b510d81f35f771b', 'member', 'default.jpg', 'active'),
 (3, 'aa', 'aaa@aa.com', '7c3d596ed03ab9116c547b0eb678b247', 'member', 'default.jpg', 'inactive'),
 (14, 'specialis three', 'specialist3@pm.com', 'b4a7495aa0ec7fc2caa321ba632c36ef', 'specialist', 'default.jpg', 'inactive'),
 (15, 'Karen Clapper', 'karenclapper@pm.com', 'f0a409766608747e98d81cf932c48ea0', 'specialist', 'pickaren16837770081131057335645c65f07b323.jpg', 'active'),
@@ -483,7 +503,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `profile_pic`, `
 (22, 'member four', 'member4@gmail.com', 'a998123003066ac9fa7de4b100e7c4bc', 'member', 'default.jpg', 'active'),
 (24, 'test specialist ', 'testspecialist@mail.com', '14a6da108721595b5da527b32a2d0f65', 'specialist', 'default.jpg', 'inactive'),
 (25, 'test two specialist', 'testtwo@specialist.com', '3be0005a2ce3d8cd56de93c6ee3cdf22', 'specialist', 'default.jpg', 'inactive'),
-(26, 'test three', 'testtest3@gmail.com', 'bb86c291743c3edcf6c76e4ff69f974f', 'specialist', 'piccat16842634862862332786463d23e8370f.jpg', 'inactive');
+(26, 'test three', 'testtest3@gmail.com', 'bb86c291743c3edcf6c76e4ff69f974f', 'specialist', 'piccat16842634862862332786463d23e8370f.jpg', 'inactive'),
+(27, 'Asabe Lars', 'asabelars@onlinemed.org', '77f8302c8fad1cecc3bc6f903002c85a', 'specialist', 'picdoc16857287401667025693647a2de424af1.png', 'active');
 
 --
 -- Indexes for dumped tables
@@ -578,7 +599,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `checkup_history`
 --
 ALTER TABLE `checkup_history`
-  MODIFY `check_hist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `check_hist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `customer_support_messages`
@@ -590,19 +611,19 @@ ALTER TABLE `customer_support_messages`
 -- AUTO_INCREMENT for table `diseases`
 --
 ALTER TABLE `diseases`
-  MODIFY `disease_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `disease_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `disease_symptoms`
 --
 ALTER TABLE `disease_symptoms`
-  MODIFY `dis_symp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `dis_symp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `disease__treatmentcenter`
 --
 ALTER TABLE `disease__treatmentcenter`
-  MODIFY `dis_treatcenter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `dis_treatcenter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `forgot_password_answers`
@@ -620,7 +641,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `specialists-expertise`
 --
 ALTER TABLE `specialists-expertise`
-  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `symptoms`
@@ -632,19 +653,19 @@ ALTER TABLE `symptoms`
 -- AUTO_INCREMENT for table `treatments`
 --
 ALTER TABLE `treatments`
-  MODIFY `treatment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `treatment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `treatment_center`
 --
 ALTER TABLE `treatment_center`
-  MODIFY `treat_center_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `treat_center_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables

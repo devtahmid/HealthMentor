@@ -144,7 +144,7 @@ try {
           </table>
         </div>
 
-        <button class='btn btn-primary btn-md mx-auto text-center px-3 col-auto' id='addButton'>Add Treatment Center</button>
+        <a class='btn btn-primary btn-md mx-auto text-center px-5 col-auto' id='addButton' href="add_specialist_form.php">Add Specialist</a>
 
       </div>
 
