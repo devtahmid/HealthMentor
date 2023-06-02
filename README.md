@@ -15,27 +15,32 @@ Diagnose mental disorders and receive recommended treatments  along with being a
 
 ### Guest and member users can perform self-checkup and receive recommended treatments and specialists.
 
-![selfcheckup.mp4](https://github.com/devtahmid/readmeassets/selfcheckup.mp4)
+https://github.com/devtahmid/HealthMentor/assets/27241074/cd90350e-ed60-498e-b06d-8eeb8c2cd4bf
+
 
 ### Members can view their checkup history
 
-(readmeassets/checkup history.png)
+![checkup history image](./readmeassets/checkuphistory.png)  
+
 
 ### Members can chat with specialists
 
-(readmeassets/memberchathome.png)
+![members chat with specialists ](./readmeassets/memberchathome.png)  
+
 
 ### Admin can add and manage disorders in the DB
 
-(readmeassets/add disorder.webm)
+https://github.com/devtahmid/HealthMentor/assets/27241074/914f9dc6-d907-4859-85e9-5d7893517218
+
 
 ### Admin can add and manage specialists in the DB
 
-(readmeassets/managespecialists.png)
+![manage specialists](./readmeassets/managespecialists.png)  
+
 
 ### Admin can read feedback submitted by users in contact.php
 
-(readmeassets/readfromfeedbackfromusers.png)
+![read feedback from users](./readmeassets/readfeedbackfromusers.png)
 
 
 
