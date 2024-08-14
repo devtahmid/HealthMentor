@@ -51,7 +51,7 @@
             <legend>Please, enter your email and password for login.</legend>
             <div class="input-block">
               <label for="login-email">E-mail</label>
-              <input id="login-email" type="email" name="email" onkeyup="checkMAIL(this.value, 'loginemail')" placeholder="Email Address" required value="<?php if (isset($_GET['fillemail'])) echo $_GET['fillemail']; ?>">
+              <input id="login-email" type="email" name="text" onkeyup="checkMAIL(this.value, 'loginemail')" placeholder="Email Address" required value="<?php if (isset($_GET['fillemail'])) echo $_GET['fillemail']; ?>">
               <span id='loginemail'></span>
             </div>
             <div class="input-block">
