@@ -52,7 +52,7 @@
 
     <main>
         <br>
-        <h1>AbleMind</h1>
+        <h1>HealthMentor</h1>
         <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
         <lord-icon src="https://cdn.lordicon.com/uiaaaqiz.json" trigger="loop" delay="2000" style="width:140px;height:140px">
         </lord-icon>
