@@ -7,7 +7,7 @@
 
 Diagnose mental disorders and receive recommended treatments  along with being able to chat wth the specialists. Admin can log in and perform management tasks for users, disorders, specialists, and more.
 
-**Hosted at**: [http://healthmentor.infinityfreeapp.com](http://healthmentor.infinityfreeapp.com/login.php?fillemail=maximus1@gmail.com&fillpwd=Max12345)
+**Hosted at**: [https://healthmentor.webkraft.space/login.php](https://healthmentor.webkraft.space/login.php?fillemail=maximus1@gmail.com&fillpwd=Max12345)
 
 
 
